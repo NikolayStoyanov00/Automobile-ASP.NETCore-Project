@@ -1,0 +1,62 @@
+1. User Entity
+	- Username
+	- Email
+	- Phone Number
+	- Town
+	- Address (Optional)
+   
+2. Car : IVehicle
+	- Make
+	- Model
+	- ManufacturingDate
+	- Color
+	- Fuel Type
+	- Gear Type
+	- EngineName
+	- HorsePower
+	- Doors
+	- Coupe
+	- WheelSide
+
+	
+3. Motorcycle : IVehicle
+	- Motor Type
+	- Make
+	- Model
+	- ManufacturingDate
+	- Color
+	- Fuel Type
+	- HorsePower
+	- Cubic Centimeters
+	- Coupe
+
+	
+4. Tire
+	- Season
+	- Width
+	- Height
+	- Diameter
+	
+5. Rim
+	- Width
+	- Height
+	- Diameter
+	- Bolts
+	
+6. VehicleOffer
+	- Title
+	- Date and Time
+	- Price
+	- Pictures
+	- Kilometers
+	- IVehicle
+	- Condition
+	- Extras
+
+7. WheelOffer
+	- Title
+	- Date and Time
+	- Price
+	- Pictures
+	- Condition
+	- IWheel
