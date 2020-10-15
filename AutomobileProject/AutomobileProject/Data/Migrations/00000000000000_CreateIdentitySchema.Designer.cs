@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutomobileProject.Data.Migrations
 {
-    [DbContext(typeof(DbContext))]
+    [DbContext(typeof(IdentityDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
