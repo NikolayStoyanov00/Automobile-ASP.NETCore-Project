@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AutomobileProject.Data.Models
 {
-    public partial class AutomobileProjectContext : DbContext
+    public partial class AutomobileDbContext : DbContext
     {
-        public AutomobileProjectContext()
+        public AutomobileDbContext()
         {
         }
 
-        public AutomobileProjectContext(DbContextOptions<AutomobileProjectContext> options)
+        public AutomobileDbContext(DbContextOptions<AutomobileDbContext> options)
             : base(options)
         {
         }
