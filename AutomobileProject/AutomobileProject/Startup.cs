@@ -12,6 +12,9 @@ using AutomobileProject.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutomobileProject.Data.Models;
+using Microsoft.CodeAnalysis.Options;
+using AutomobileProject.Data.Models.User;
 
 namespace AutomobileProject
 {
@@ -27,11 +30,17 @@ namespace AutomobileProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IdentityDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<IdentityDbContext>();
+            services.AddDbContext<AppDbContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<AutomobileDbContext>(options => 
+            options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<AppDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
