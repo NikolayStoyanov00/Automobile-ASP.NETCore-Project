@@ -1,4 +1,5 @@
 ﻿using System;
+using AutomobileProject.Data.Models.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -24,7 +25,7 @@ namespace AutomobileProject.Data.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Motorcycle> Motorcycles { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
-        public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -164,7 +165,7 @@ namespace AutomobileProject.Data.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Vehicle>(entity =>
+            modelBuilder.Entity<Car>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
