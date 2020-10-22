@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +15,26 @@ namespace AutomobileProject.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly AutomobileDbContext dbContext;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            AutomobileDbContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this.dbContext = dbContext;
         }
 
         public string Username { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
+
+        public string CurrentTown => dbContext.AspNetUsers.FirstOrDefault(x => x.UserName == this.Username).Town;
+
+        public ICollection<Town> Towns => dbContext.Towns.ToList();
 
         [BindProperty]
         public InputModel Input { get; set; }

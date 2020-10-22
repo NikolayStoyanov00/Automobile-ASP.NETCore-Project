@@ -1,0 +1,173 @@
+﻿@model AutomobileProject.ViewModels.Offer.AddOfferViewModel
+@{
+    ViewData["Title"] = "Add";
+    var currentMake = "";
+}
+
+
+
+<form class="form-horizontal" asp-controller="Offer" asp-action="Add" method="post" enctype="multipart/form-data">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Add a vehicle offer</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+
+        <!-- Select Make-->
+        <select asp-for="Make" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="makes" id="makes">
+            <option value="0">Make</option>
+            @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
+            {
+                <option value="@make">@make</option>
+            }
+        </select>
+
+
+
+        <!-- Select Model-->
+        <select asp-for="Model" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="models" id="models">
+            <option value="0">Model</option>
+            @foreach (var car in Model.MakeModel.OrderBy(x => x.Model))
+            {
+                <option value="@car.Make">@car.Model</option>
+            }
+        </select>
+
+
+        <script>
+            fetch('/Offer/Add')
+                .then(response => {
+                    var $make = $('#makes'),
+                        $model = $('#models'),
+                        $options = $model.find('option');
+
+                    $make.on('change', function () {
+                        $currentMake = $make;
+                        $model.html($options.filter('[value="' + this.value + '"]'));
+                        $model.trigger('change');
+                    }).trigger('change');
+                });
+        </script>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="Condition"></label>
+            <input asp-for="Condition" class="form-control" />
+            <span asp-validation-for="Condition" class="text-danger"></span>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="HorsePower"></label>
+            <input asp-for="HorsePower" class="form-control" />
+            <span asp-validation-for="HorsePower" class="text-danger"></span>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="Kilometers"></label>
+            <input asp-for="Kilometers" class="form-control" />
+            <span asp-validation-for="Kilometers" class="text-danger"></span>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="ContactNumber"></label>
+            <input asp-for="ContactNumber" class="form-control" />
+            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+        </div>
+
+        <!-- Image upload-->
+        <input class="col-md-4 control-label" type="file" asp-for="ImageFile">
+
+        <!-- Button -->
+        <div class="form-group">
+            <div class="col-md-4">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+
+
+
+        <!--Testing-->
+        <select name="make" id="make">
+            <option value="0">Make</option>
+            <option value="1">BMW</option>
+            <option value="2">Daewoo</option>
+            <option value="3">Ford</option>
+            <option value="4">Holden</option>
+            <option value="5">Honda</option>
+            <option value="6">Hyundai</option>
+            <option value="7">Isuzu</option>
+            <option value="8">Kia</option>
+            <option value="9">Lexus</option>
+            <option value="10">Mazda</option>
+            <option value="11">Mitsubishi</option>
+            <option value="12">Nissan</option>
+            <option value="13">Peugeot</option>
+            <option value="14">Subaru</option>
+            <option value="15">Suzuki</option>
+            <option value="16">Toyota</option>
+            <option value="17">Volkswagen</option>
+        </select>
+        <!-- Vehicle Model List -->
+        <select name="model" id="model">
+            <option value="0">Model</option>
+            <option class="318i" value="1">318i</option>
+            <option class="lanos" value="2">Lanos</option>
+            <option class="courier" value="3">Courier</option>
+            <option class="falcon" value="3">Falcon</option>
+            <option class="festiva" value="3">Festiva</option>
+            <option class="fiesta" value="3">Fiesta</option>
+            <option class="focus" value="3">Focus</option>
+            <option class="laser" value="3">Laser</option>
+            <option class="ranger" value="3">Ranger</option>
+            <option class="territory" value="3">Territory</option>
+            <option class="astra" value="4">Astra</option>
+            <option class="barina" value="4">Barina</option>
+            <option class="captiva" value="4">Captiva</option>
+            <option class="colorado" value="4">Colorado</option>
+            <option class="commodore" value="4">Commodore</option>
+            <option class="cruze" value="4">Cruze</option>
+            <option class="rodeo" value="4">Rodeo</option>
+            <option class="viva" value="4">Viva</option>
+        </select>
+
+        <script>
+            fetch('/Offer/Add')
+                .then(response => {
+                    var $make = $('#make'),
+                        $model = $('#model'),
+                        $options = $model.find('option');
+
+                    $make.on('change', function () {
+                        $currentMake = $make;
+                        $model.html($options.filter('[value="' + this.value + '"]'));
+                        $model.trigger('change');
+                    }).trigger('change');
+
+                });</script>
+    </fieldset>
+</form>
