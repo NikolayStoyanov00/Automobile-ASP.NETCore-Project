@@ -278,3 +278,5 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.MvcApplicationPartsAssemblyInfo.cache
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Offer\Add.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Offer\All.cshtml.g.cs
