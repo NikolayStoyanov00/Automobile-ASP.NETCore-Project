@@ -1,4 +1,5 @@
 ﻿using System;
+using AutomobileProject.Data.Models.Offer;
 using AutomobileProject.Data.Models.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -26,6 +27,8 @@ namespace AutomobileProject.Data.Models
         public virtual DbSet<Motorcycle> Motorcycles { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<CarOffer> CarOffers { get; set; }
+        public virtual DbSet<MotorcycleOffer> MotorcycleOffers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

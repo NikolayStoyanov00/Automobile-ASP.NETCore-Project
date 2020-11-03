@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using AutomobileProject.Data.Models;
 using Microsoft.CodeAnalysis.Options;
 using AutomobileProject.Data.Models.User;
+using AutomobileProject.Services.Offer;
 
 namespace AutomobileProject
 {
@@ -43,6 +44,8 @@ namespace AutomobileProject
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<IOfferService, OfferService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
