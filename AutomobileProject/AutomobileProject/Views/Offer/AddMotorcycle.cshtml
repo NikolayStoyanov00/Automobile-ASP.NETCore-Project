@@ -1,7 +1,6 @@
-﻿@model AutomobileProject.ViewModels.Offer.AddOfferViewModel
+﻿@model AutomobileProject.ViewModels.Offer.AddMotorcycleViewModel
 @{
-    ViewData["Title"] = "Add";
-    var currentMake = "";
+    ViewData["Title"] = "Add Motorcycle";
 }
 
 
@@ -10,7 +9,7 @@
     <fieldset>
 
         <!-- Form Name -->
-        <legend>Add a vehicle offer</legend>
+        <legend>Add a Motorcycle Offer</legend>
 
         <!-- Text input-->
         <div class="form-group">
@@ -19,9 +18,8 @@
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
 
-
         <!-- Select Make-->
-        <select  asp-for="Make" style="font-family: Arial; right: 15px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="makes" id="makes">
+        <select asp-for="Make" style="font-family: Arial; right: 15px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="makes" id="makes">
             <option value="0">Make</option>
             @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
             {
@@ -33,9 +31,9 @@
         <!-- Select Model-->
         <select asp-for="Model" style="font-family: Arial; right: 10px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="models" id="models">
             <option value="0">Model</option>
-            @foreach (var car in Model.MakeModel.OrderBy(x => x.Model))
+            @foreach (var motorcycle in Model.MakeModel.OrderBy(x => x.Model))
             {
-                <option value="@car.Make">@car.Model</option>
+                <option value="@motorcycle.Make">@motorcycle.Model</option>
             }
         </select>
 
@@ -47,12 +45,18 @@
                         $options = $model.find('option');
 
                     $make.on('change', function () {
-                        $currentMake = $make;
                         $model.html($options.filter('[value="' + this.value + '"]'));
                         $model.trigger('change');
                     }).trigger('change');
                 });
         </script>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="Year"></label>
+            <input asp-for="Year" class="form-control" />
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
 
         <!-- Text input-->
         <div class="form-group">
@@ -73,6 +77,13 @@
             <label asp-for="HorsePower"></label>
             <input asp-for="HorsePower" class="form-control" />
             <span asp-validation-for="HorsePower" class="text-danger"></span>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label asp-for="CubicCentimeters"></label>
+            <input asp-for="CubicCentimeters" class="form-control" />
+            <span asp-validation-for="CubicCentimeters" class="text-danger"></span>
         </div>
 
         <!-- Text input-->

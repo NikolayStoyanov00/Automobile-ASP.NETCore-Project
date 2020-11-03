@@ -1,4 +1,5 @@
 ﻿using AutomobileProject.Data.Models;
+using AutomobileProject.ViewModels.Offer.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,22 @@ using System.Threading.Tasks;
 
 namespace AutomobileProject.ViewModels.Offer
 {
-    public class AddOfferViewModel
+    public class AddCarViewModel
     {
         private readonly AutomobileDbContext dbContext;
 
-        public AddOfferViewModel(AutomobileDbContext dbContext)
+        public AddCarViewModel()
+        {
+
+        }
+        public AddCarViewModel(AutomobileDbContext dbContext)
         {
             this.dbContext = dbContext;
+            this.ImageFiles = new HashSet<IFormFile>();
         }
 
         [Required]
-        [Display(Name = "Title")]
+        [Display(Name = "Offer Title")]
         [MinLength(3)]
         public string Title { get; set; }
 
@@ -33,13 +39,15 @@ namespace AutomobileProject.ViewModels.Offer
         public double Price { get; set; }
 
         [Required]
-        [Display(Name = "Year")]
+        [Range(1800, 2021)]
+        [Display(Name = "Year of production")]
         public int Year { get; set; }
 
         [Required]
         [Display(Name = "Condition")]
-        public string Condition { get; set; }
+        public Condition Condition { get; set; }
 
+        [Required]
         [Display(Name = "Horse power")]
         public int HorsePower { get; set; }
 
@@ -54,7 +62,16 @@ namespace AutomobileProject.ViewModels.Offer
         [Phone]
         public string ContactNumber { get; set; }
 
-        public ICollection<MakeModelDto> MakeModel => dbContext.Cars
+        public DateTime CreatedOn => DateTime.UtcNow;
+
+        [Required]
+        [Display(Name = "Upload Image")]
+        public IFormFile ImageFile { get; set; }
+
+        [Display(Name = "More Images")]
+        public ICollection<IFormFile> ImageFiles { get; set; }
+
+        public ICollection<MakeModelDto> MakeModel => dbContext?.Cars
             .Select(x => new MakeModelDto
             {
                 Make = x.Make,
@@ -62,11 +79,5 @@ namespace AutomobileProject.ViewModels.Offer
             })
             .Distinct()
             .ToList();
-
-        public DateTime CreatedOn => DateTime.UtcNow;
-
-        [Required]
-        [Display(Name = "Upload Image")]
-        public IFormFile ImageFile { get; set; }
     }
 }
