@@ -21,52 +21,6 @@ namespace AutomobileProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AutomobileProject.Data.Models.Car", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Make")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.Property<int?>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cars");
-                });
-
-            modelBuilder.Entity("AutomobileProject.Data.Models.Motorcycle", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Make")
-                        .IsRequired()
-                        .HasColumnType("varchar(16)")
-                        .HasMaxLength(16)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("varchar(35)")
-                        .HasMaxLength(35)
-                        .IsUnicode(false);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Motorcycles");
-                });
 
             modelBuilder.Entity("AutomobileProject.Data.Models.Offer.CarOffer", b =>
                 {
@@ -177,30 +131,6 @@ namespace AutomobileProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MotorcycleOffers");
-                });
-
-            modelBuilder.Entity("AutomobileProject.Data.Models.Town", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NameBg")
-                        .IsRequired()
-                        .HasColumnType("varchar(30)")
-                        .HasMaxLength(30)
-                        .IsUnicode(false);
-
-                    b.Property<string>("NameEn")
-                        .HasColumnType("varchar(30)")
-                        .HasMaxLength(30)
-                        .IsUnicode(false);
-
-                    b.Property<int>("Population")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Towns");
                 });
 
             modelBuilder.Entity("AutomobileProject.Data.Models.User.AspNetRoleClaims", b =>

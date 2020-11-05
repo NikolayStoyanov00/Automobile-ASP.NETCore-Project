@@ -1,138 +1,152 @@
-﻿@model AutomobileProject.ViewModels.Offer.AddCarViewModel 
+﻿@model AutomobileProject.ViewModels.Offer.AddCarViewModel
 @{
     ViewData["Title"] = "Add";
 }
 
 
+<div class="container">
+    <main role="main" class="pb-3">
+        <form col-md-4 class="form-horizontal" asp-controller="Offer" asp-action="AddCar" method="post" enctype="multipart/form-data" id="form">
+            <fieldset>
 
-<form col-md-4 class="form-horizontal" asp-controller="Offer" asp-action="AddCar" method="post" enctype="multipart/form-data" id="form">
-    <fieldset>
+                <!-- Form Name -->
+                <legend>Add a Car offer</legend>
 
-        <!-- Form Name -->
-        <legend>Add a Car offer</legend>
+                <div asp-validation-summary="All" class="text-danger form-group"></div>
 
-        <div asp-validation-summary="All" class="text-danger form-group"></div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
+                <!-- Select Make-->
+                <div class="form-group">
+                    <select asp-for="Make" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
+                        <option value="0">Make</option>
+                        @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
+                        {
+                            <option value="@make">@make</option>
+                        }
+                    </select>
 
-        <!-- Select Make-->
-        <div class="form-group">
-            <select asp-for="Make" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
-                <option value="0">Make</option>
-                @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
-                {
-                    <option value="@make">@make</option>
-                }
-            </select>
+                    <select style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
+                        <option value="0">Model</option>
+                        @foreach (var car in Model.MakeModel.OrderBy(x => x.Model))
+                        {
+                            <option value="@car.Make">@car.Model</option>
+                        }
+                    </select>
 
-            <select style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
-                <option value="0">Model</option>
-                @foreach (var car in Model.MakeModel.OrderBy(x => x.Model))
-                {
-                    <option value="@car.Make">@car.Model</option>
-                }
-            </select>
+                    <input asp-for="Model" type="hidden" id="Model" name="Model" value="">
 
-            <input asp-for="Model" type="hidden" id="Model" name="Model" value="">
+                    <script>
+                        fetch('/Offer/Add')
+                            .then(response => {
+                                var $make = $('#makes'),
+                                    $model = $('#models'),
+                                    $options = $model.find('option'),
+                                    $hiddenModel = $('#Model');
 
-            <script>
-                fetch('/Offer/Add')
-                    .then(response => {
-                        var $make = $('#makes'),
-                            $model = $('#models'),
-                            $options = $model.find('option'),
-                            $hiddenModel = $('#Model');
-
-                        $make.on('change', function () {
-                            $model.html($options.filter('[value="' + this.value + '"]'));
-                            $model.trigger('change');
-                        }).trigger('change');
-                    });
-            </script>
-        </div>
+                                $make.on('change', function () {
+                                    $model.html($options.filter('[value="' + this.value + '"]'));
+                                    $model.trigger('change');
+                                }).trigger('change');
+                            });
+                    </script>
+                </div>
 
 
-        <!-- Select Model-->
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Year"></label>
-            <input asp-for="Year" class="form-control" />
-            <span asp-validation-for="Year" class="text-danger"></span>
-        </div>
+                <!-- Select Model-->
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Year"></label>
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Price"></label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
 
-        <!-- Select condition-->
-        <div class="form-group">
-            <select asp-for="Condition" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="conditions">
-                <option value="0">Condition</option>
-                <option value="1">New</option>
-                <option value="2">Used</option>
-                <option value="3">For parts</option>
-            </select>
-            <span asp-validation-for="Condition" class="text-danger"></span>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="HorsePower"></label>
-            <input asp-for="HorsePower" class="form-control" />
-            <span asp-validation-for="HorsePower" class="text-danger"></span>
-        </div>
+                <!-- Select condition-->
+                <div class="form-group">
+                    <select asp-for="Condition" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="conditions">
+                        <option value="0">Condition</option>
+                        <option value="1">New</option>
+                        <option value="2">Used</option>
+                        <option value="3">For parts</option>
+                    </select>
+                    <span asp-validation-for="Condition" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Kilometers"></label>
-            <input asp-for="Kilometers" class="form-control" />
-            <span asp-validation-for="Kilometers" class="text-danger"></span>
-        </div>
+                <!-- Select condition-->
+                <div class="form-group">
+                    <select asp-for="FuelType" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="fuelTypes">
+                        <option value="0">Fuel Type</option>
+                        <option value="1">Petrol</option>
+                        <option value="2">Diesel</option>
+                        <option value="3">Electricity</option>
+                    </select>
+                    <span asp-validation-for="FuelType" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="HorsePower"></label>
+                    <input asp-for="HorsePower" class="form-control" />
+                    <span asp-validation-for="HorsePower" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="ContactNumber"></label>
-            <input asp-for="ContactNumber" class="form-control" />
-            <span asp-validation-for="ContactNumber" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Kilometers"></label>
+                    <input asp-for="Kilometers" class="form-control" />
+                    <span asp-validation-for="Kilometers" class="text-danger"></span>
+                </div>
 
-        <!-- Image upload-->
-        <div class="form-group">
-            <input class="control-label btn-primary" style="padding: 1em; position:relative" type="file" asp-for="ImageFile">
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
 
-        <!-- Button -->
-        <div class="form-group">
-            <button style="width:150px; float:right" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="ContactNumber"></label>
+                    <input asp-for="ContactNumber" class="form-control" />
+                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                </div>
 
-        <script>
-            fetch('/Offer/Add')
-                .then(response => {
-                    var $singlebutton = $('#singlebutton');
-                    var $selectedModel = document.getElementById('models');
+                <!-- Image upload-->
+                <div class="form-group">
+                    <input class="control-label btn-primary" style="padding: 1em; position:relative" type="file" asp-for="ImageFile">
+                </div>
 
-                    $singlebutton.on('click', function () {
-                        document.getElementById("Model").value = $selectedModel.options[$selectedModel.selectedIndex].text;
-                        console.log(document.getElementById("Model").textContent);
-                    });
-                });
-        </script>
+                <!-- Button -->
+                <div class="form-group">
+                    <button style="width:150px; float:right" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                </div>
 
-    </fieldset>
-</form>
+                <script>
+                    fetch('/Offer/Add')
+                        .then(response => {
+                            var $singlebutton = $('#singlebutton');
+                            var $selectedModel = document.getElementById('models');
+
+                            $singlebutton.on('click', function () {
+                                document.getElementById("Model").value = $selectedModel.options[$selectedModel.selectedIndex].text;
+                                console.log(document.getElementById("Model").textContent);
+                            });
+                        });
+                </script>
+
+            </fieldset>
+        </form>
+    </main>
+</div>

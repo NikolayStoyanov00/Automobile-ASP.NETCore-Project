@@ -87,6 +87,10 @@ namespace AutomobileProject.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FuelType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("HorsePower")
                         .HasColumnType("int");
 

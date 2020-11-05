@@ -36,6 +36,9 @@ namespace AutomobileProject.Data.Models.Offer
         [Required]
         public string Condition { get; set; }
 
+        [Required]
+        public string FuelType { get; set; }
+
         public int HorsePower { get; set; }
 
         public int Kilometers { get; set; }

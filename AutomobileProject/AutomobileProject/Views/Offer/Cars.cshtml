@@ -1,0 +1,227 @@
+﻿@model ICollection<AutomobileProject.ViewModels.Offer.VisualizeCarViewModel>
+@{
+    ViewData["Title"] = "Cars";
+}
+
+<section class="banner banner-secondary" id="top" style="background-image: url('/img/banner-image-1-1920x300.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>Cars</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main>
+    <section class="featured-places">
+        <div class="container">
+            <form action="#">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Used/New:</label>
+
+                            <select class="form-control">
+                                <option value="">All</option>
+                                <option value="new">New vehicle</option>
+                                <option value="used">Used vehicle</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Vehicle Type:</label>
+
+                            <select class="form-control">
+                                <option value="">--All --</option>
+                                <option value="">--All --</option>
+                                <option value="">--All --</option>
+                                <option value="">--All --</option>
+                                <option value="">--All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Make:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Model:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Price:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Mileage:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Engine size:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Power:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Fuel:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Gearbox:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Doors:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Number of seats:</label>
+
+                            <select class="form-control">
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                                <option value="">-- All --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center blue-button">
+                    <a href="#">Search</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="featured-places">
+        <div class="container">
+            <div class="row">
+                @foreach (var car in Model)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="featured-item">
+                            <div class="thumb">
+                                <div class="thumb-img">
+                                    <img src="@car.Image" height="360" width="240" style="object-fit: cover" alt="">
+                                </div>
+                                <div class="overlay-content">
+                                    <strong><i class="fa fa-dashboard"></i> @car.Kilometers</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><i class="fa fa-cube"></i> 1800 cc</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><i class="fa fa-cog"></i> Manual</strong>
+                                </div>
+                            </div>
+                            <div class="down-content">
+                                <h4>@car.Title</h4>
+
+                                <br>
+
+                                <p>@car.HorsePower hp  /  @car.FuelType  /  @car.Year  /  @car.Condition</p>
+
+                                <p><span><strong><sup>$</sup>@car.Price.00</strong></span></p>
+
+                                <div class="text-button">
+                                    <a href="/Offer/CarDetails?id=@car.Id">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>

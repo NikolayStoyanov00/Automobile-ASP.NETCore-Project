@@ -1,4 +1,6 @@
-﻿using AutomobileProject.ViewModels.Offer;
+﻿using AutomobileProject.Data.Models;
+using AutomobileProject.Data.Models.Offer;
+using AutomobileProject.ViewModels.Offer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +12,7 @@ namespace AutomobileProject.Services.Offer
     {
         void AddCar(AddCarViewModel addOfferViewModel);
         void AddMotorcycle(AddMotorcycleViewModel addOfferViewModel);
+        ICollection<VisualizeCarViewModel> CarsForVisualization();
+        public VisualizeCarDetailsViewModel GetCarById(int id);
     }
 }
