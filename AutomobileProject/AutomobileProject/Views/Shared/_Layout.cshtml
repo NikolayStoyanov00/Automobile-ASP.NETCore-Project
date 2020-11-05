@@ -36,14 +36,13 @@
                             <ul class="dropdown menu">
 
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>
-
-                                <li><a href="cars.html">Cars</a></li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                    <a class="nav-link text-dark" asp-controller="Offer" asp-action="Cars">Cars</a>
                                 </li>
+
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li>
@@ -78,12 +77,7 @@
         </header>
     </div>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
+        @RenderBody()
 
     <footer>
         <div class="container">

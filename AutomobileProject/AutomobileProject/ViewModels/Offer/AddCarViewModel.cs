@@ -48,6 +48,10 @@ namespace AutomobileProject.ViewModels.Offer
         public Condition Condition { get; set; }
 
         [Required]
+        [Display(Name = "Fuel Type")]
+        public FuelType FuelType { get; set; }
+
+        [Required]
         [Display(Name = "Horse power")]
         public int HorsePower { get; set; }
 

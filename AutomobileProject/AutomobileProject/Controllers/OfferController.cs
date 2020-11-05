@@ -21,7 +21,7 @@ namespace AutomobileProject.Controllers
         public OfferController(ILogger<OfferController> logger, AutomobileDbContext dbContext, IOfferService offerService)
         {
             _logger = logger;
-            this.dbContext = dbContext;
+            this.dbContext = new AutomobileDbContext();
             this.offerService = offerService;
         }
 
@@ -56,6 +56,18 @@ namespace AutomobileProject.Controllers
         {
             this.offerService.AddMotorcycle(offer);
             return this.Redirect("/");
+        }
+
+        public IActionResult Cars()
+        {
+            var carsToVisualize = this.offerService.CarsForVisualization();
+            return this.View(carsToVisualize);
+        }
+
+        public IActionResult CarDetails(int id)
+        {
+            var carOffer = this.offerService.GetCarById(id);
+            return this.View(carOffer);
         }
     }
 }

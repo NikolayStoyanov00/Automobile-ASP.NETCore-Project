@@ -4,118 +4,121 @@
 }
 
 
+<div class="container">
+    <main role="main" class="pb-3">
+        <form class="form-horizontal" asp-controller="Offer" asp-action="Add" method="post" enctype="multipart/form-data">
+            <fieldset>
 
-<form class="form-horizontal" asp-controller="Offer" asp-action="Add" method="post" enctype="multipart/form-data">
-    <fieldset>
+                <!-- Form Name -->
+                <legend>Add a Motorcycle Offer</legend>
 
-        <!-- Form Name -->
-        <legend>Add a Motorcycle Offer</legend>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-
-        <!-- Select Make-->
-        <select asp-for="Make" style="font-family: Arial; right: 15px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="makes" id="makes">
-            <option value="0">Make</option>
-            @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
-            {
-                <option value="@make">@make</option>
-            }
-        </select>
+                <!-- Select Make-->
+                <select asp-for="Make" style="font-family: Arial; right: 15px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="makes" id="makes">
+                    <option value="0">Make</option>
+                    @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
+                    {
+                        <option value="@make">@make</option>
+                    }
+                </select>
 
 
-        <!-- Select Model-->
-        <select asp-for="Model" style="font-family: Arial; right: 10px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="models" id="models">
-            <option value="0">Model</option>
-            @foreach (var motorcycle in Model.MakeModel.OrderBy(x => x.Model))
-            {
-                <option value="@motorcycle.Make">@motorcycle.Model</option>
-            }
-        </select>
+                <!-- Select Model-->
+                <select asp-for="Model" style="font-family: Arial; right: 10px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="models" id="models">
+                    <option value="0">Model</option>
+                    @foreach (var motorcycle in Model.MakeModel.OrderBy(x => x.Model))
+                    {
+                        <option value="@motorcycle.Make">@motorcycle.Model</option>
+                    }
+                </select>
 
-        <script>
-            fetch('/Offer/Add')
-                .then(response => {
-                    var $make = $('#makes'),
-                        $model = $('#models'),
-                        $options = $model.find('option');
+                <script>
+                    fetch('/Offer/Add')
+                        .then(response => {
+                            var $make = $('#makes'),
+                                $model = $('#models'),
+                                $options = $model.find('option');
 
-                    $make.on('change', function () {
-                        $model.html($options.filter('[value="' + this.value + '"]'));
-                        $model.trigger('change');
-                    }).trigger('change');
-                });
-        </script>
+                            $make.on('change', function () {
+                                $model.html($options.filter('[value="' + this.value + '"]'));
+                                $model.trigger('change');
+                            }).trigger('change');
+                        });
+                </script>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Year"></label>
-            <input asp-for="Year" class="form-control" />
-            <span asp-validation-for="Year" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Year"></label>
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Price"></label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Condition"></label>
-            <input asp-for="Condition" class="form-control" />
-            <span asp-validation-for="Condition" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Condition"></label>
+                    <input asp-for="Condition" class="form-control" />
+                    <span asp-validation-for="Condition" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="HorsePower"></label>
-            <input asp-for="HorsePower" class="form-control" />
-            <span asp-validation-for="HorsePower" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="HorsePower"></label>
+                    <input asp-for="HorsePower" class="form-control" />
+                    <span asp-validation-for="HorsePower" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="CubicCentimeters"></label>
-            <input asp-for="CubicCentimeters" class="form-control" />
-            <span asp-validation-for="CubicCentimeters" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="CubicCentimeters"></label>
+                    <input asp-for="CubicCentimeters" class="form-control" />
+                    <span asp-validation-for="CubicCentimeters" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Kilometers"></label>
-            <input asp-for="Kilometers" class="form-control" />
-            <span asp-validation-for="Kilometers" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Kilometers"></label>
+                    <input asp-for="Kilometers" class="form-control" />
+                    <span asp-validation-for="Kilometers" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label asp-for="ContactNumber"></label>
-            <input asp-for="ContactNumber" class="form-control" />
-            <span asp-validation-for="ContactNumber" class="text-danger"></span>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="ContactNumber"></label>
+                    <input asp-for="ContactNumber" class="form-control" />
+                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                </div>
 
-        <!-- Image upload-->
-        <input class="col-md-4 control-label btn-primary" style="padding: 1em;left:-15px; position:relative" type="file" asp-for="ImageFile">
+                <!-- Image upload-->
+                <input class="col-md-4 control-label btn-primary" style="padding: 1em;left:-15px; position:relative" type="file" asp-for="ImageFile">
 
-        <!-- Button -->
-        <div class="form-group">
-            <div class="col-md-1">
-                <button style="width:150px; height:70px; left:610px; position:relative;" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
+                <!-- Button -->
+                <div class="form-group">
+                    <div class="col-md-1">
+                        <button style="width:150px; height:70px; left:610px; position:relative;" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
 
-    </fieldset>
-</form>
+            </fieldset>
+        </form>
+    </main>
+</div>

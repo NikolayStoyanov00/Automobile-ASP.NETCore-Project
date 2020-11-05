@@ -1,6 +1,7 @@
 ﻿using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.Offer;
 using AutomobileProject.ViewModels.Offer;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,11 +29,12 @@ namespace AutomobileProject.Services.Offer
                 Year = addCarViewModel.Year,
                 Price = addCarViewModel.Price,
                 Condition = addCarViewModel.Condition.ToString(),
+                FuelType = addCarViewModel.FuelType.ToString(),
                 HorsePower = addCarViewModel.HorsePower,
                 Kilometers = addCarViewModel.Kilometers,
                 Description = addCarViewModel.Description,
                 ContactNumber = addCarViewModel.ContactNumber,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow,
             };
 
             using (var target = new MemoryStream())
@@ -71,6 +73,62 @@ namespace AutomobileProject.Services.Offer
 
             dbContext.MotorcycleOffers.Add(offer);
             dbContext.SaveChanges();
+        }
+
+        public ICollection<VisualizeCarViewModel> CarsForVisualization()
+        {
+            var carOffersToVisualize = new List<VisualizeCarViewModel>();
+
+            foreach (var carOffer in dbContext.CarOffers.ToArray())
+            {
+                var car = new VisualizeCarViewModel()
+                {
+                    Id = carOffer.Id,
+                    Title = carOffer.Title,
+                    Condition = carOffer.Condition,
+                    Year = carOffer.Year,
+                    FuelType = carOffer.FuelType,
+                    HorsePower = carOffer.HorsePower,
+                    Price = carOffer.Price,
+                    Kilometers = carOffer.Kilometers
+                };
+
+                car.Image = ConvertByteArrayToImage(carOffer.ImageFile); 
+
+                carOffersToVisualize.Add(car);
+            }
+
+            return carOffersToVisualize;
+        }
+
+        public VisualizeCarDetailsViewModel GetCarById(int id)
+        {
+            var carOffer = dbContext.CarOffers.FirstOrDefault(x => x.Id == id);
+
+            var car = new VisualizeCarDetailsViewModel()
+            {
+                Type = carOffer.Condition,
+                Make = carOffer.Make,
+                Model = carOffer.Model,
+                Year = carOffer.Year,
+                Kilometers = carOffer.Kilometers,
+                FuelType = carOffer.FuelType,
+                HorsePower = carOffer.HorsePower,
+                Price = carOffer.Price,
+            };
+
+            car.Image = ConvertByteArrayToImage(carOffer.ImageFile);
+
+            return car;
+        }
+
+        private string ConvertByteArrayToImage(byte[] arrayImage)
+
+        {
+            string base64String = Convert.ToBase64String(arrayImage, 0, arrayImage.Length);
+
+            return "data:image/png;base64," + base64String;
+
         }
     }
 }
