@@ -1,4 +1,5 @@
 ﻿@model AutomobileProject.ViewModels.Offer.AddCarViewModel
+@using AutomobileProject.ViewModels.Offer.Enums
 @{
     ViewData["Title"] = "Add";
 }
@@ -17,32 +18,34 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Title"></label>
-                    <input asp-for="Title" class="form-control" />
+                    <input style="color:black" asp-for="Title" class="form-control" />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <!-- Select Make-->
+                <!-- TODO: Fix Bug after page reload to be able to match make and model again-->
                 <div class="form-group">
-                    <select asp-for="Make" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
-                        <option value="0">Make</option>
+                    <label asp-for="Make"></label>
+                    <select class="form-control" asp-for="Make" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
                         @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
                         {
-                            <option value="@make">@make</option>
+                            <option class="form-control" style="color: black" value="@make">@make</option>
                         }
                     </select>
 
-                    <select style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
-                        <option value="0">Model</option>
+                    <label asp-for="Model"></label>
+                    <select class="form-control" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
                         @foreach (var car in Model.MakeModel.OrderBy(x => x.Model))
                         {
-                            <option value="@car.Make">@car.Model</option>
+                            <option class="form-control" style="color: black" value="@car.Make">@car.Model</option>
                         }
                     </select>
 
                     <input asp-for="Model" type="hidden" id="Model" name="Model" value="">
 
+                    <!--Script to set the Models to match the chosen Make-->
                     <script>
-                        fetch('/Offer/Add')
+                        fetch('/Offer/AddCar')
                             .then(response => {
                                 var $make = $('#makes'),
                                     $model = $('#models'),
@@ -58,39 +61,32 @@
                 </div>
 
 
-                <!-- Select Model-->
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Year"></label>
-                    <input asp-for="Year" class="form-control" />
+                    <input style="color:black" asp-for="Year" class="form-control" />
                     <span asp-validation-for="Year" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Price"></label>
-                    <input asp-for="Price" class="form-control" />
+                    <input style="color:black" asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
                 <!-- Select condition-->
                 <div class="form-group">
-                    <select asp-for="Condition" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="conditions">
-                        <option value="0">Condition</option>
-                        <option value="1">New</option>
-                        <option value="2">Used</option>
-                        <option value="3">For parts</option>
+                    <label asp-for="Condition"></label>
+                    <select class="form-control" asp-for="Condition" asp-items="@Html.GetEnumSelectList<Condition>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="conditions">
                     </select>
                     <span asp-validation-for="Condition" class="text-danger"></span>
                 </div>
 
                 <!-- Select condition-->
                 <div class="form-group">
-                    <select asp-for="FuelType" style="font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="fuelTypes">
-                        <option value="0">Fuel Type</option>
-                        <option value="1">Petrol</option>
-                        <option value="2">Diesel</option>
-                        <option value="3">Electricity</option>
+                    <label asp-for="FuelType"></label>
+                    <select class="form-control" asp-for="FuelType" asp-items="@Html.GetEnumSelectList<FuelType>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
                     </select>
                     <span asp-validation-for="FuelType" class="text-danger"></span>
                 </div>
@@ -98,28 +94,28 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="HorsePower"></label>
-                    <input asp-for="HorsePower" class="form-control" />
+                    <input style="color:black" asp-for="HorsePower" class="form-control" />
                     <span asp-validation-for="HorsePower" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Kilometers"></label>
-                    <input asp-for="Kilometers" class="form-control" />
+                    <input style="color:black" asp-for="Kilometers" class="form-control" />
                     <span asp-validation-for="Kilometers" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Description"></label>
-                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <textarea style="color:black" asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="ContactNumber"></label>
-                    <input asp-for="ContactNumber" class="form-control" />
+                    <input style="color:black" asp-for="ContactNumber" class="form-control" />
                     <span asp-validation-for="ContactNumber" class="text-danger"></span>
                 </div>
 
@@ -133,8 +129,9 @@
                     <button style="width:150px; float:right" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
                 </div>
 
+                <!-- Script to set the value of Model to the correct text value of the select option of Models select -->
                 <script>
-                    fetch('/Offer/Add')
+                    fetch('/Offer/AddCar')
                         .then(response => {
                             var $singlebutton = $('#singlebutton');
                             var $selectedModel = document.getElementById('models');

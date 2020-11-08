@@ -198,3 +198,4 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.pdb
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.genruntimeconfig.cache
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.csprojAssemblyReference.cache
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\wwwroot\img\banner-image-1-1920x300.jpg

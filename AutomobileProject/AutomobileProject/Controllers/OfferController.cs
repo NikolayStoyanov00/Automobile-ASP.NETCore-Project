@@ -35,6 +35,8 @@ namespace AutomobileProject.Controllers
         [HttpPost]
         public IActionResult AddCar(AddCarViewModel input)
         {
+            //TODO: Add image file validation
+
             if (!ModelState.IsValid)
             {
                 return this.View(new AddCarViewModel(dbContext));
