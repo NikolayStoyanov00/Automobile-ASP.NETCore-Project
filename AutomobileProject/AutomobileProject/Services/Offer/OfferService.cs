@@ -4,6 +4,7 @@ using AutomobileProject.ViewModels.Offer;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace AutomobileProject.Services.Offer
             this.dbContext = dbContext;
         }
 
-        public void AddCar(AddCarViewModel addCarViewModel)
+        public void AddCar(AddCarViewModel addCarViewModel, string userId)
         {
             var offer = new CarOffer()
             {
@@ -29,8 +30,12 @@ namespace AutomobileProject.Services.Offer
                 Year = addCarViewModel.Year,
                 Price = addCarViewModel.Price,
                 Condition = addCarViewModel.Condition.ToString(),
+                Color = addCarViewModel.Color,
                 FuelType = addCarViewModel.FuelType.ToString(),
                 HorsePower = addCarViewModel.HorsePower,
+                EngineSize = addCarViewModel.EngineSize,
+                Gearbox = addCarViewModel.Gearbox.ToString(),
+                Doors = addCarViewModel.Doors,
                 Kilometers = addCarViewModel.Kilometers,
                 Description = addCarViewModel.Description,
                 ContactNumber = addCarViewModel.ContactNumber,
@@ -39,12 +44,79 @@ namespace AutomobileProject.Services.Offer
 
             using (var target = new MemoryStream())
             {
-                addCarViewModel.ImageFile.CopyTo(target);
-                offer.ImageFile = target.ToArray();
+                addCarViewModel.MainImageFile.CopyTo(target);
+                offer.OfferImage = target.ToArray();
             }
+
+            var user = dbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
+            offer.User = user;
+            offer.UserId = userId;
 
             dbContext.CarOffers.Add(offer);
             dbContext.SaveChanges();
+
+            if (addCarViewModel.SecondImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addCarViewModel.SecondImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addCarViewModel.ThirdImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addCarViewModel.ThirdImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addCarViewModel.FourthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addCarViewModel.FourthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addCarViewModel.FifthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addCarViewModel.FifthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addCarViewModel.SixthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addCarViewModel.SixthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+           
+            dbContext.SaveChanges();
+        }
+
+        protected OfferImage GetOfferImage(MemoryStream target, int offerId)
+        {
+            var offerImage = new OfferImage()
+            {
+                Image = target.ToArray(),
+                CarOfferId = offerId
+            };
+
+            return offerImage;
         }
 
         public void AddMotorcycle(AddMotorcycleViewModel addMotorcycleViewModel)
@@ -73,62 +145,6 @@ namespace AutomobileProject.Services.Offer
 
             dbContext.MotorcycleOffers.Add(offer);
             dbContext.SaveChanges();
-        }
-
-        public ICollection<VisualizeCarViewModel> CarsForVisualization()
-        {
-            var carOffersToVisualize = new List<VisualizeCarViewModel>();
-
-            foreach (var carOffer in dbContext.CarOffers.ToArray())
-            {
-                var car = new VisualizeCarViewModel()
-                {
-                    Id = carOffer.Id,
-                    Title = carOffer.Title,
-                    Condition = carOffer.Condition,
-                    Year = carOffer.Year,
-                    FuelType = carOffer.FuelType,
-                    HorsePower = carOffer.HorsePower,
-                    Price = carOffer.Price,
-                    Kilometers = carOffer.Kilometers
-                };
-
-                car.Image = ConvertByteArrayToImage(carOffer.ImageFile); 
-
-                carOffersToVisualize.Add(car);
-            }
-
-            return carOffersToVisualize;
-        }
-
-        public VisualizeCarDetailsViewModel GetCarById(int id)
-        {
-            var carOffer = dbContext.CarOffers.FirstOrDefault(x => x.Id == id);
-
-            var car = new VisualizeCarDetailsViewModel()
-            {
-                Type = carOffer.Condition,
-                Make = carOffer.Make,
-                Model = carOffer.Model,
-                Year = carOffer.Year,
-                Kilometers = carOffer.Kilometers,
-                FuelType = carOffer.FuelType,
-                HorsePower = carOffer.HorsePower,
-                Price = carOffer.Price,
-            };
-
-            car.Image = ConvertByteArrayToImage(carOffer.ImageFile);
-
-            return car;
-        }
-
-        private string ConvertByteArrayToImage(byte[] arrayImage)
-
-        {
-            string base64String = Convert.ToBase64String(arrayImage, 0, arrayImage.Length);
-
-            return "data:image/png;base64," + base64String;
-
         }
     }
 }

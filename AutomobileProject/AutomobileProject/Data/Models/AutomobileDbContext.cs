@@ -28,6 +28,7 @@ namespace AutomobileProject.Data.Models
         public virtual DbSet<Town> Towns { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<CarOffer> CarOffers { get; set; }
+        public virtual DbSet<OfferImage> OfferImages { get; set; }
         public virtual DbSet<MotorcycleOffer> MotorcycleOffers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

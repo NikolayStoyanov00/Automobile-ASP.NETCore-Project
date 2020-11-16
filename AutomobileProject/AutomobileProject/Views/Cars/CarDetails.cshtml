@@ -18,18 +18,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <div>
-                        <img src="@Model.Image" alt="" class="img-responsive wc-image">
+                    <div style="cursor:pointer">
+                        <img src="@Model.MainImage" alt="" class="img-responsive wc-image; zoom" id="mainImage">
                     </div>
+
                     <br>
                     <div class="row">
-                        <div class="col-sm-4 col-xs-6">
-                            <div class="form-group">
-                                <img src="img/product-1-720x480.jpg" alt="" class="img-responsive">
+                        @foreach (var image in Model.Images)
+                        {
+                            <div class="col-sm-4 col-xs-6">
+                                <div style="cursor:pointer" class="form-group">
+                                    <img onclick="ChangeImage(this.src)" src="@image" alt="" class="img-responsive">
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
+
+                <script src="~/js/ImageScripts/medium-zoom.min.js"></script>
+                <script src="~/js/ImageScripts/ChangeImageScript.js"></script>
+                <script src="~/js/ImageScripts/ChangeImageSizeScript.js"></script>
 
                 <div class="col-md-6 col-xs-12">
                     <form action="#" method="post" class="form">
@@ -90,7 +98,7 @@
                                 <div class="clearfix">
                                     <span class="pull-left">Engine size</span>
 
-                                    <strong class="pull-right">1800 cc</strong>
+                                    <strong class="pull-right">@Model.EngineSize cc</strong>
                                 </div>
                             </li>
 
@@ -102,20 +110,11 @@
                                 </div>
                             </li>
 
-
                             <li class="list-group-item">
                                 <div class="clearfix">
                                     <span class="pull-left">Gearbox</span>
 
-                                    <strong class="pull-right">Manual</strong>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="clearfix">
-                                    <span class="pull-left">Number of seats</span>
-
-                                    <strong class="pull-right">4</strong>
+                                    <strong class="pull-right">@Model.Gearbox</strong>
                                 </div>
                             </li>
 
@@ -123,7 +122,7 @@
                                 <div class="clearfix">
                                     <span class="pull-left">Doors</span>
 
-                                    <strong class="pull-right">2/3</strong>
+                                    <strong class="pull-right">@Model.Doors</strong>
                                 </div>
                             </li>
 
@@ -131,7 +130,7 @@
                                 <div class="clearfix">
                                     <span class="pull-left">Color</span>
 
-                                    <strong class="pull-right">Black</strong>
+                                    <strong class="pull-right">@Model.Color</strong>
                                 </div>
                             </li>
                         </ul>
@@ -172,7 +171,7 @@
                                 <li>
                                     <a class="accordion-trigger">Vehicle Description</a>
                                     <div class="accordion-content">
-                                        <p>- Colour coded bumpers<br>- Tinted glass<br>- Immobiliser<br>- Central locking - remote<br>- Passenger airbag<br>- Electric windows<br>- Rear head rests<br>- Radio<br>- CD player<br>- Ideal first car<br>- Warranty<br>- High level brake light<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p>@Model.Description</p>
                                     </div>
                                 </li>
                                 <li>
@@ -185,18 +184,8 @@
 
                                             <br>
 
-                                            <strong>John Smith</strong>
+                                            <strong>@Model.UserDetails.FullName</strong>
 
-                                        </p>
-
-                                        <p>
-                                            <span>Phone</span>
-
-                                            <br>
-
-                                            <strong>
-                                                <a href="tel:123-456-789">123-456-789</a>
-                                            </strong>
                                         </p>
 
                                         <p>
@@ -205,7 +194,7 @@
                                             <br>
 
                                             <strong>
-                                                <a href="tel:456789123">456789123</a>
+                                                <a href="tel:@Model.UserDetails.PhoneNumber">@Model.UserDetails.PhoneNumber</a>
                                             </strong>
                                         </p>
 
@@ -216,7 +205,7 @@
                                             <br>
 
                                             <strong>
-                                                <a href="mailto:john@carsales.com">john@carsales.com</a>
+                                                <a href="mailto:@Model.UserDetails.EmailAddress">@Model.UserDetails.EmailAddress</a>
                                             </strong>
                                         </p>
                                     </div>

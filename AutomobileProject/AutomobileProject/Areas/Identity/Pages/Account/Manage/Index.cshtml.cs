@@ -44,17 +44,21 @@ namespace AutomobileProject.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            public string FullName { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var fullName = _userManager.GetUserAsync(User).Result.FullName;
 
             Username = userName;
 
             Input = new InputModel
             {
+                FullName = fullName,
                 PhoneNumber = phoneNumber
             };
         }

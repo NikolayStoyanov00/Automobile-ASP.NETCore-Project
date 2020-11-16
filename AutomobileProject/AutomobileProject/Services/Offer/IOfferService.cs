@@ -10,9 +10,7 @@ namespace AutomobileProject.Services.Offer
 {
     public interface IOfferService
     {
-        void AddCar(AddCarViewModel addOfferViewModel);
+        void AddCar(AddCarViewModel addOfferViewModel, string userId);
         void AddMotorcycle(AddMotorcycleViewModel addOfferViewModel);
-        ICollection<VisualizeCarViewModel> CarsForVisualization();
-        public VisualizeCarDetailsViewModel GetCarById(int id);
     }
 }

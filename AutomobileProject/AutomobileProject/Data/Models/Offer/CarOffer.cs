@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutomobileProject.Data.Models.User;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -37,10 +38,24 @@ namespace AutomobileProject.Data.Models.Offer
         public string Condition { get; set; }
 
         [Required]
+        public string Color { get; set; }
+
+        [Required]
         public string FuelType { get; set; }
 
+        [Required]
         public int HorsePower { get; set; }
 
+        [Required]
+        public int EngineSize { get; set; }
+
+        [Required]
+        public string Gearbox { get; set; }
+
+        [Required]
+        public string Doors { get; set; }
+
+        [Required]
         public int Kilometers { get; set; }
 
         public string Description { get; set; }
@@ -51,7 +66,10 @@ namespace AutomobileProject.Data.Models.Offer
 
         public DateTime CreatedOn { get; set; }
 
+        public AspNetUsers User { get; set; }
+        public string UserId { get; set; }
+
         [Required]
-        public byte[] ImageFile { get; set; }
+        public byte[] OfferImage { get; set; }
     }
 }

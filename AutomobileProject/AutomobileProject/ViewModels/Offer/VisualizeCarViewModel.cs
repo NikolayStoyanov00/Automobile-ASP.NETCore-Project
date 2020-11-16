@@ -13,6 +13,12 @@ namespace AutomobileProject.ViewModels.Offer
 
         public int HorsePower { get; set; }
 
+        public int EngineSize { get; set; }
+
+        public string Gearbox { get; set; }
+
+        public string Doors { get; set; }
+
         public string FuelType { get; set; }
 
         public int Year { get; set; }

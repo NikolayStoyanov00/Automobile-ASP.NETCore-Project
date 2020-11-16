@@ -46,6 +46,7 @@ namespace AutomobileProject
             services.AddRazorPages();
 
             services.AddScoped<IOfferService, OfferService>();
+            services.AddScoped<ICarsService, CarsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

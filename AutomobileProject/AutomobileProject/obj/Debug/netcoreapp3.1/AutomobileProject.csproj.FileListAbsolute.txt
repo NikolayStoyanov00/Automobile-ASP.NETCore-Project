@@ -180,8 +180,6 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Offer\AddCar.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Offer\AddMotorcycle.cshtml.g.cs
-D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Offer\CarDetails.cshtml.g.cs
-D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Offer\Cars.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
@@ -197,5 +195,8 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.dll
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.pdb
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.genruntimeconfig.cache
-D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.csprojAssemblyReference.cache
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\wwwroot\img\banner-image-1-1920x300.jpg
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.csprojAssemblyReference.cache
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\PartialViews\_CarsFilters.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\All.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\CarDetails.cshtml.g.cs
