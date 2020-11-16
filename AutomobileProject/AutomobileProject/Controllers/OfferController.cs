@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AutomobileProject.Controllers
@@ -36,13 +37,14 @@ namespace AutomobileProject.Controllers
         public IActionResult AddCar(AddCarViewModel input)
         {
             //TODO: Add image file validation
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (!ModelState.IsValid)
             {
                 return this.View(new AddCarViewModel(dbContext));
             }
 
-            this.offerService.AddCar(input);
+            this.offerService.AddCar(input, userId);
             return this.Redirect("/");
         }
 
@@ -58,18 +60,6 @@ namespace AutomobileProject.Controllers
         {
             this.offerService.AddMotorcycle(offer);
             return this.Redirect("/");
-        }
-
-        public IActionResult Cars()
-        {
-            var carsToVisualize = this.offerService.CarsForVisualization();
-            return this.View(carsToVisualize);
-        }
-
-        public IActionResult CarDetails(int id)
-        {
-            var carOffer = this.offerService.GetCarById(id);
-            return this.View(carOffer);
         }
     }
 }

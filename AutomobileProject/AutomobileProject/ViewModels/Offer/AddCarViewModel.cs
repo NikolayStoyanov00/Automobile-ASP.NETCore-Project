@@ -20,7 +20,6 @@ namespace AutomobileProject.ViewModels.Offer
         public AddCarViewModel(AutomobileDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.ImageFiles = new HashSet<IFormFile>();
         }
 
         [Required]
@@ -39,6 +38,9 @@ namespace AutomobileProject.ViewModels.Offer
         public double Price { get; set; }
 
         [Required]
+        public string Color { get; set; }
+
+        [Required]
         [Range(1800, 2021)]
         [Display(Name = "Year of production")]
         public int Year { get; set; }
@@ -55,6 +57,17 @@ namespace AutomobileProject.ViewModels.Offer
         [Display(Name = "Horse power")]
         public int HorsePower { get; set; }
 
+        [Required]
+        [Display(Name = "Engine size")]
+        public int EngineSize { get; set; }
+
+        [Required]
+        public Gearbox Gearbox { get; set; }
+
+        [Required]
+        public string Doors { get; set; }
+
+        [Required]
         [Display(Name = "Kilometers")]
         public int Kilometers { get; set; }
 
@@ -69,11 +82,12 @@ namespace AutomobileProject.ViewModels.Offer
         public DateTime CreatedOn => DateTime.UtcNow;
 
         [Required]
-        [Display(Name = "Upload Image")]
-        public IFormFile ImageFile { get; set; }
-
-        [Display(Name = "More Images")]
-        public ICollection<IFormFile> ImageFiles { get; set; }
+        public IFormFile MainImageFile { get; set; }
+        public IFormFile SecondImageFile { get; set; }
+        public IFormFile ThirdImageFile { get; set; }
+        public IFormFile FourthImageFile { get; set; }
+        public IFormFile FifthImageFile { get; set; }
+        public IFormFile SixthImageFile { get; set; }
 
         public ICollection<MakeModelDto> MakeModel => dbContext?.Cars
             .Select(x => new MakeModelDto

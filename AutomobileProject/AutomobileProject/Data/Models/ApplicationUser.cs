@@ -9,5 +9,7 @@ namespace AutomobileProject.Data.Models.User
     public class ApplicationUser : IdentityUser
     {
         public string Town { get; set; }
+
+        public string FullName { get; set; }
     }
 }

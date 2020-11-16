@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomobileProject.Migrations
 {
     [DbContext(typeof(AutomobileDbContext))]
-    [Migration("20201105110727_CarOffer-AddTable")]
-    partial class CarOfferAddTable
+    [Migration("20201116095153_Offer-Tables")]
+    partial class OfferTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,6 +75,10 @@ namespace AutomobileProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Condition")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -89,16 +93,23 @@ namespace AutomobileProject.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Doors")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EngineSize")
+                        .HasColumnType("int");
+
                     b.Property<string>("FuelType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gearbox")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("HorsePower")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("ImageFile")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Kilometers")
                         .HasColumnType("int");
@@ -111,6 +122,10 @@ namespace AutomobileProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("OfferImage")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -118,10 +133,15 @@ namespace AutomobileProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CarOffers");
                 });
@@ -181,6 +201,24 @@ namespace AutomobileProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MotorcycleOffers");
+                });
+
+            modelBuilder.Entity("AutomobileProject.Data.Models.Offer.OfferImage", b =>
+                {
+                    b.Property<string>("ImageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CarOfferId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("CarOfferId");
+
+                    b.ToTable("OfferImages");
                 });
 
             modelBuilder.Entity("AutomobileProject.Data.Models.Town", b =>
@@ -406,6 +444,22 @@ namespace AutomobileProject.Migrations
                         .HasFilter("([NormalizedUserName] IS NOT NULL)");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("AutomobileProject.Data.Models.Offer.CarOffer", b =>
+                {
+                    b.HasOne("AutomobileProject.Data.Models.User.AspNetUsers", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("AutomobileProject.Data.Models.Offer.OfferImage", b =>
+                {
+                    b.HasOne("AutomobileProject.Data.Models.Offer.CarOffer", "CarOffer")
+                        .WithMany()
+                        .HasForeignKey("CarOfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AutomobileProject.Data.Models.User.AspNetRoleClaims", b =>
