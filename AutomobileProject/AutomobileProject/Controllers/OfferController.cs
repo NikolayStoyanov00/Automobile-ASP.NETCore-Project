@@ -45,7 +45,7 @@ namespace AutomobileProject.Controllers
             }
 
             this.offerService.AddCar(input, userId);
-            return this.Redirect("/");
+            return this.Redirect("/Cars/AllCars");
         }
 
         [Authorize]

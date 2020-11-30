@@ -31,6 +31,7 @@ namespace AutomobileProject.Services.Offer
                 Price = addCarViewModel.Price,
                 Condition = addCarViewModel.Condition.ToString(),
                 Color = addCarViewModel.Color,
+                SteeringWheelSide = addCarViewModel.SteeringWheelSide.ToString(),
                 FuelType = addCarViewModel.FuelType.ToString(),
                 HorsePower = addCarViewModel.HorsePower,
                 EngineSize = addCarViewModel.EngineSize,

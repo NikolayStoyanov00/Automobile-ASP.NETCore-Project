@@ -38,6 +38,9 @@ namespace AutomobileProject.Data.Models.Offer
         public string Condition { get; set; }
 
         [Required]
+        public string SteeringWheelSide { get; set; }
+
+        [Required]
         public string Color { get; set; }
 
         [Required]

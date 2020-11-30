@@ -1,21 +1,25 @@
-﻿fetch('/Offer/AddCar')
+﻿fetch('/Cars/AllCars')
     .then(response => {
         var $make = $('#makes'),
             $model = $('#models'),
-            $options = $model.find('option');
+            $options = $model.find('option'),
+            $select = document.getElementById("models"),
+            $all = document.getElementById("all");
 
         $make.on('change', function () {
             $model.html($options.filter('[value="' + this.value + '"]'));
+            $select.add($all, $select[0]);
+            $all.attr('selected', 'selected');
             $model.trigger('change');
         }).trigger('change');
     });
 
-fetch('/Offer/AddCar')
+fetch('/Cars/AllCars')
     .then(response => {
-        var $singlebutton = $('#singlebutton');
+        var $submitButton = $('#submitButton');
         var $selectedModel = document.getElementById('models');
 
-        $singlebutton.on('click', function () {
+        $submitButton.on('click', function () {
             document.getElementById("Model").value = $selectedModel.options[$selectedModel.selectedIndex].text;
         });
     });

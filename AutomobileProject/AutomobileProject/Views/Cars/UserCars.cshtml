@@ -1,19 +1,15 @@
 ﻿@model ICollection<AutomobileProject.ViewModels.Offer.VisualizeCarViewModel>
-
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Your car offers";
 }
 
-<section class="banner" id="top" style="background-image: url(img/homepage-banner-image-1920x700.jpg);">
+<section class="banner banner-secondary" id="top" style="background-image: url('/img/banner-image-1-1920x300.jpg');">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="banner-caption">
                     <div class="line-dec"></div>
-                    <h2>The best place to find your perfect vehicle!</h2>
-                    <div class="blue-button">
-                        <a href="contact.html">Contact Us</a>
-                    </div>
+                    <h2>Your Car Offers</h2>
                 </div>
             </div>
         </div>
@@ -21,16 +17,10 @@
 </section>
 
 <main>
+    <partial name="~/Views/Cars/PartialViews/_FiltersPartialView.cshtml" />
+
     <section class="featured-places">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <span>Newest Offers</span>
-                        <h2>Newest Offers</h2>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 @foreach (var car in Model)
                 {
@@ -60,27 +50,13 @@
                                 <div class="text-button">
                                     <a href="/Cars/CarDetails?id=@car.Id">View More</a>
                                 </div>
+                                <div class="text-button">
+                                    <a class="btn-danger" style="color:white" href="/Cars/DeleteCar?id=@car.Id">Delete Offer</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 }
-            </div>
-        </div>
-    </section>
-
-    <section id="video-container">
-        <div class="video-overlay"></div>
-        <div class="video-content">
-            <div class="inner">
-                <div class="section-heading">
-                    <span>Contact Us</span>
-                    <h2>Vivamus nec vehicula felis</h2>
-                </div>
-                <!-- Modal button -->
-
-                <div class="blue-button">
-                    <a href="contact.html">Talk to us</a>
-                </div>
             </div>
         </div>
     </section>

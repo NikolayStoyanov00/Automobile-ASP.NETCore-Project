@@ -1,6 +1,5 @@
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\appsettings.json
-D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\AutomobileProject.StaticWebAssets.xml
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\AutomobileProject.exe
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\AutomobileProject.deps.json
@@ -197,6 +196,8 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.genruntimeconfig.cache
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\bin\Debug\netcoreapp3.1\wwwroot\img\banner-image-1-1920x300.jpg
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\AutomobileProject.csprojAssemblyReference.cache
-D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\PartialViews\_CarsFilters.cshtml.g.cs
-D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\All.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\CarDetails.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\UserCars.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\AllCars.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\PartialViews\_FiltersPartialView.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\scopedcss\bundle\AutomobileProject.styles.css
