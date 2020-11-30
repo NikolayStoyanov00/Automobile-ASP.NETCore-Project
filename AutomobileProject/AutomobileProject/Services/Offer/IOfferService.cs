@@ -11,6 +11,7 @@ namespace AutomobileProject.Services.Offer
     public interface IOfferService
     {
         void AddCar(AddCarViewModel addOfferViewModel, string userId);
+
         void AddMotorcycle(AddMotorcycleViewModel addOfferViewModel);
     }
 }

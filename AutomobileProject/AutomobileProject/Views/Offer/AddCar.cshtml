@@ -1,5 +1,5 @@
 ﻿@model AutomobileProject.ViewModels.Offer.AddCarViewModel
-@using AutomobileProject.ViewModels.Offer.Enums
+@using AutomobileProject.ViewModels.Cars.Enums
 @{
     ViewData["Title"] = "Add";
 }
@@ -61,6 +61,14 @@
                     <label asp-for="Price"></label>
                     <input style="color:black" asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="SteeringWheelSide"></label>
+                    <select class="form-control" asp-for="SteeringWheelSide" asp-items="@Html.GetEnumSelectList<SteeringWheelSide>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                    </select>
+                    <span asp-validation-for="SteeringWheelSide" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->

@@ -1,5 +1,5 @@
 ﻿using AutomobileProject.Data.Models;
-using AutomobileProject.ViewModels.Offer.Enums;
+using AutomobileProject.ViewModels.Cars.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -39,6 +39,10 @@ namespace AutomobileProject.ViewModels.Offer
 
         [Required]
         public string Color { get; set; }
+
+        [Required]
+        [Display(Name = "Steering Wheel Side")]
+        public SteeringWheelSide SteeringWheelSide { get; set; }
 
         [Required]
         [Range(1800, 2021)]
