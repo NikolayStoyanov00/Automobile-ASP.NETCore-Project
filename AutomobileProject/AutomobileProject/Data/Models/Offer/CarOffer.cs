@@ -1,4 +1,5 @@
 ﻿using AutomobileProject.Data.Models.User;
+using AutomobileProject.ViewModels.Cars.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -35,16 +36,16 @@ namespace AutomobileProject.Data.Models.Offer
         public int Year { get; set; }
 
         [Required]
-        public string Condition { get; set; }
+        public Condition Condition { get; set; }
 
         [Required]
-        public string SteeringWheelSide { get; set; }
+        public SteeringWheelSide SteeringWheelSide { get; set; }
 
         [Required]
         public string Color { get; set; }
 
         [Required]
-        public string FuelType { get; set; }
+        public FuelType FuelType { get; set; }
 
         [Required]
         public int HorsePower { get; set; }
@@ -53,7 +54,7 @@ namespace AutomobileProject.Data.Models.Offer
         public int EngineSize { get; set; }
 
         [Required]
-        public string Gearbox { get; set; }
+        public Gearbox Gearbox { get; set; }
 
         [Required]
         public string Doors { get; set; }

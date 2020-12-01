@@ -29,13 +29,13 @@ namespace AutomobileProject.Services.Offer
                 Model = addCarViewModel.Model,
                 Year = addCarViewModel.Year,
                 Price = addCarViewModel.Price,
-                Condition = addCarViewModel.Condition.ToString(),
+                Condition = addCarViewModel.Condition,
                 Color = addCarViewModel.Color,
-                SteeringWheelSide = addCarViewModel.SteeringWheelSide.ToString(),
-                FuelType = addCarViewModel.FuelType.ToString(),
+                SteeringWheelSide = addCarViewModel.SteeringWheelSide,
+                FuelType = addCarViewModel.FuelType,
                 HorsePower = addCarViewModel.HorsePower,
                 EngineSize = addCarViewModel.EngineSize,
-                Gearbox = addCarViewModel.Gearbox.ToString(),
+                Gearbox = addCarViewModel.Gearbox,
                 Doors = addCarViewModel.Doors,
                 Kilometers = addCarViewModel.Kilometers,
                 Description = addCarViewModel.Description,
@@ -56,12 +56,14 @@ namespace AutomobileProject.Services.Offer
             dbContext.CarOffers.Add(offer);
             dbContext.SaveChanges();
 
+            var offerType = "CarOffer";
+
             if (addCarViewModel.SecondImageFile != null)
             {
                 using (var target = new MemoryStream())
                 {
                     addCarViewModel.SecondImageFile.CopyTo(target);
-                    var offerImage = GetOfferImage(target, offer.Id);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
                     dbContext.OfferImages.Add(offerImage);
                 }
             }
@@ -71,7 +73,7 @@ namespace AutomobileProject.Services.Offer
                 using (var target = new MemoryStream())
                 {
                     addCarViewModel.ThirdImageFile.CopyTo(target);
-                    var offerImage = GetOfferImage(target, offer.Id);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
                     dbContext.OfferImages.Add(offerImage);
                 }
             }
@@ -81,7 +83,7 @@ namespace AutomobileProject.Services.Offer
                 using (var target = new MemoryStream())
                 {
                     addCarViewModel.FourthImageFile.CopyTo(target);
-                    var offerImage = GetOfferImage(target, offer.Id);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
                     dbContext.OfferImages.Add(offerImage);
                 }
             }
@@ -91,7 +93,7 @@ namespace AutomobileProject.Services.Offer
                 using (var target = new MemoryStream())
                 {
                     addCarViewModel.FifthImageFile.CopyTo(target);
-                    var offerImage = GetOfferImage(target, offer.Id);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
                     dbContext.OfferImages.Add(offerImage);
                 }
             }
@@ -101,7 +103,7 @@ namespace AutomobileProject.Services.Offer
                 using (var target = new MemoryStream())
                 {
                     addCarViewModel.SixthImageFile.CopyTo(target);
-                    var offerImage = GetOfferImage(target, offer.Id);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
                     dbContext.OfferImages.Add(offerImage);
                 }
             }
@@ -109,18 +111,26 @@ namespace AutomobileProject.Services.Offer
             dbContext.SaveChanges();
         }
 
-        protected OfferImage GetOfferImage(MemoryStream target, int offerId)
+        protected OfferImage GetOfferImage(MemoryStream target, int offerId, string offerType)
         {
             var offerImage = new OfferImage()
             {
                 Image = target.ToArray(),
-                CarOfferId = offerId
             };
+
+            if (offerType == "CarOffer")
+            {
+                offerImage.CarOfferId = offerId;
+            }
+            else if (offerType == "MotorcycleOffer")
+            {
+                offerImage.MotorcycleOfferId = offerId;
+            }
 
             return offerImage;
         }
 
-        public void AddMotorcycle(AddMotorcycleViewModel addMotorcycleViewModel)
+        public void AddMotorcycle(AddMotorcycleViewModel addMotorcycleViewModel, string userId)
         {
             var offer = new MotorcycleOffer()
             {
@@ -129,22 +139,83 @@ namespace AutomobileProject.Services.Offer
                 Model = addMotorcycleViewModel.Model,
                 Year = addMotorcycleViewModel.Year,
                 Price = addMotorcycleViewModel.Price,
+                Color = addMotorcycleViewModel.Color,
+                FuelType = addMotorcycleViewModel.FuelType,
+                Gearbox = addMotorcycleViewModel.Gearbox,
                 Condition = addMotorcycleViewModel.Condition,
                 HorsePower = addMotorcycleViewModel.HorsePower,
-                CubicCentimers = addMotorcycleViewModel.CubicCentimeters,
+                CubicCentimeters = addMotorcycleViewModel.CubicCentimeters,
                 Kilometers = addMotorcycleViewModel.Kilometers,
                 Description = addMotorcycleViewModel.Description,
                 ContactNumber = addMotorcycleViewModel.ContactNumber,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow,
             };
 
             using (var target = new MemoryStream())
             {
-                addMotorcycleViewModel.ImageFile.CopyTo(target);
-                offer.ImageFile = target.ToArray();
+                addMotorcycleViewModel.MainImageFile.CopyTo(target);
+                offer.OfferImage = target.ToArray();
             }
 
+            var user = dbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
+            offer.User = user;
+            offer.UserId = userId;
+
             dbContext.MotorcycleOffers.Add(offer);
+            dbContext.SaveChanges();
+
+            var offerType = "MotorcycleOffer";
+
+            if (addMotorcycleViewModel.SecondImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addMotorcycleViewModel.SecondImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addMotorcycleViewModel.ThirdImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addMotorcycleViewModel.ThirdImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addMotorcycleViewModel.FourthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addMotorcycleViewModel.FourthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addMotorcycleViewModel.FifthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addMotorcycleViewModel.FifthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addMotorcycleViewModel.SixthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addMotorcycleViewModel.SixthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
             dbContext.SaveChanges();
         }
     }

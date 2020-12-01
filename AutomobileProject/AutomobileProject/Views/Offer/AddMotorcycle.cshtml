@@ -1,123 +1,200 @@
 ﻿@model AutomobileProject.ViewModels.Offer.AddMotorcycleViewModel
+@using AutomobileProject.ViewModels.Cars.Enums
 @{
-    ViewData["Title"] = "Add Motorcycle";
+    ViewData["Title"] = "Add";
 }
 
+<link rel="stylesheet" href="~/css/imagePreviewStyle.css">
 
 <div class="container">
     <main role="main" class="pb-3">
-        <form class="form-horizontal" asp-controller="Offer" asp-action="Add" method="post" enctype="multipart/form-data">
+        <form col-md-4 class="form-horizontal" asp-controller="Offer" asp-action="AddMotorcycle" method="post" enctype="multipart/form-data" id="form">
             <fieldset>
 
                 <!-- Form Name -->
-                <legend>Add a Motorcycle Offer</legend>
+                <legend>Add a Motorcycle offer</legend>
+
+                <div asp-validation-summary="All" class="text-danger form-group"></div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Title"></label>
-                    <input asp-for="Title" class="form-control" />
+                    <input style="color:black" asp-for="Title" class="form-control" />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <!-- Select Make-->
-                <select asp-for="Make" style="font-family: Arial; right: 15px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="makes" id="makes">
-                    <option value="0">Make</option>
-                    @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
-                    {
-                        <option value="@make">@make</option>
-                    }
-                </select>
+                <div class="form-group">
+                    <label asp-for="Make"></label>
+                    <select class="form-control" asp-for="Make" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
+                        <option></option>
+                        @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
+                        {
+                            <option class="form-control" style="color: black" value="@make">@make</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Make" class="text-danger"></span>
+                </div>
 
+                <div class="form-group">
+                    <label asp-for="Model"></label>
+                    <select class="form-control" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
+                        @foreach (var car in Model.MakeModel.OrderBy(x => x.Model))
+                        {
+                            <option class="form-control" style="color: black" value="@car.Make">@car.Model</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Model" class="text-danger"></span>
 
-                <!-- Select Model-->
-                <select asp-for="Model" style="font-family: Arial; right: 10px; top: -15px; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="models" id="models">
-                    <option value="0">Model</option>
-                    @foreach (var motorcycle in Model.MakeModel.OrderBy(x => x.Model))
-                    {
-                        <option value="@motorcycle.Make">@motorcycle.Model</option>
-                    }
-                </select>
-
-                <script>
-                    fetch('/Offer/Add')
-                        .then(response => {
-                            var $make = $('#makes'),
-                                $model = $('#models'),
-                                $options = $model.find('option');
-
-                            $make.on('change', function () {
-                                $model.html($options.filter('[value="' + this.value + '"]'));
-                                $model.trigger('change');
-                            }).trigger('change');
-                        });
-                </script>
+                    <input asp-for="Model" type="hidden" id="Model" name="Model" value="">
+                </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Year"></label>
-                    <input asp-for="Year" class="form-control" />
+                    <input style="color:black" asp-for="Year" class="form-control" />
                     <span asp-validation-for="Year" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Price"></label>
-                    <input asp-for="Price" class="form-control" />
+                    <input style="color:black" asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
+                    <label asp-for="Color"></label>
+                    <input style="color:black" asp-for="Color" class="form-control" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+
+                <!-- Select condition-->
+                <div class="form-group">
                     <label asp-for="Condition"></label>
-                    <input asp-for="Condition" class="form-control" />
+                    <select class="form-control" asp-for="Condition" asp-items="@Html.GetEnumSelectList<Condition>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                    </select>
                     <span asp-validation-for="Condition" class="text-danger"></span>
                 </div>
 
-                <!-- Text input-->
+                <!-- Select condition-->
                 <div class="form-group">
-                    <label asp-for="HorsePower"></label>
-                    <input asp-for="HorsePower" class="form-control" />
-                    <span asp-validation-for="HorsePower" class="text-danger"></span>
+                    <label asp-for="FuelType"></label>
+                    <select class="form-control" asp-for="FuelType" asp-items="@Html.GetEnumSelectList<FuelType>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                    </select>
+                    <span asp-validation-for="FuelType" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="CubicCentimeters"></label>
-                    <input asp-for="CubicCentimeters" class="form-control" />
+                    <input style="color:black" asp-for="CubicCentimeters" class="form-control" />
                     <span asp-validation-for="CubicCentimeters" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
+                    <label asp-for="HorsePower"></label>
+                    <input style="color:black" asp-for="HorsePower" class="form-control" />
+                    <span asp-validation-for="HorsePower" class="text-danger"></span>
+                </div>
+
+                <!-- Select condition-->
+                <div class="form-group">
+                    <label asp-for="Gearbox"></label>
+                    <select class="form-control" asp-for="Gearbox" asp-items="@Html.GetEnumSelectList<Gearbox>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                    </select>
+                    <span asp-validation-for="Gearbox" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
                     <label asp-for="Kilometers"></label>
-                    <input asp-for="Kilometers" class="form-control" />
+                    <input style="color:black" asp-for="Kilometers" class="form-control" />
                     <span asp-validation-for="Kilometers" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="Description"></label>
-                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <textarea style="color:black" asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label asp-for="ContactNumber"></label>
-                    <input asp-for="ContactNumber" class="form-control" />
+                    <input style="color:black" asp-for="ContactNumber" class="form-control" />
                     <span asp-validation-for="ContactNumber" class="text-danger"></span>
                 </div>
 
                 <!-- Image upload-->
-                <input class="col-md-4 control-label btn-primary" style="padding: 1em;left:-15px; position:relative" type="file" asp-for="ImageFile">
-
-                <!-- Button -->
                 <div class="form-group">
-                    <div class="col-md-1">
-                        <button style="width:150px; height:70px; left:610px; position:relative;" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="MainImageFile" id="imageFile">
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image" />
+                            <span class="image-preview__default-text">Main Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="SecondImageFile" id="secondImage">
+                        <div class="image-preview" id="secondImagePreview">
+                            <img src="" alt="Image Preview" class="secondImage-preview__image" />
+                            <span class="secondImage-preview__default-text">Second Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="ThirdImageFile" id="thirdImage">
+                        <div class="image-preview" id="thirdImagePreview">
+                            <img src="" alt="Image Preview" class="thirdImage-preview__image" />
+                            <span class="thirdImage-preview__default-text">Third Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="FourthImageFile" id="fourthImage">
+                        <div class="image-preview" id="fourthImagePreview">
+                            <img src="" alt="Image Preview" class="fourthImage-preview__image" />
+                            <span class="fourthImage-preview__default-text">Fourth Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="FifthImageFile" id="fifthImage">
+                        <div class="image-preview" id="fifthImagePreview">
+                            <img src="" alt="Image Preview" class="fifthImage-preview__image" />
+                            <span class="fifthImage-preview__default-text">Fifth Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="SixthImageFile" id="sixthImage">
+                        <div class="image-preview" id="sixthImagePreview">
+                            <img src="" alt="Image Preview" class="sixthImage-preview__image" />
+                            <span class="sixthImage-preview__default-text">Sixth Image</span>
+                        </div>
                     </div>
                 </div>
 
+                <!--Image Scripts -->
+                <script src="~/js/ImageScripts/FirstImageScript.js"></script>
+                <script src="~/js/ImageScripts/SecondImageScript.js"></script>
+                <script src="~/js/ImageScripts/ThirdImageScript.js"></script>
+                <script src="~/js/ImageScripts/FourthImageScript.js"></script>
+                <script src="~/js/ImageScripts/FifthImageScript.js"></script>
+                <script src="~/js/ImageScripts/SixthImageScript.js"></script>
+
+                <!--Script to set the Models to match the chosen Make-->
+                <script src="~/js/MakeModelScript/MakeModelFunctionalityScript.js"></script>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <button style="width:150px; float:right" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                </div>
             </fieldset>
         </form>
     </main>
