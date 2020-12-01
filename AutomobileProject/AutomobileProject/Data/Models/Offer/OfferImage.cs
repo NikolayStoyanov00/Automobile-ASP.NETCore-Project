@@ -17,7 +17,10 @@ namespace AutomobileProject.Data.Models.Offer
         public string ImageId { get; set; }
         public byte[] Image { get; set; }
 
-        public int CarOfferId { get; set; }
+        public Nullable<int> CarOfferId { get; set; }
         public CarOffer CarOffer { get; set; }
+
+        public Nullable<int> MotorcycleOfferId { get; set; }
+        public MotorcycleOffer MotorcycleOffer { get; set; }
     }
 }

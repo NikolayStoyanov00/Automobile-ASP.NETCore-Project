@@ -4,14 +4,16 @@ using AutomobileProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutomobileProject.Migrations
 {
     [DbContext(typeof(AutomobileDbContext))]
-    partial class AutomobileDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201201192001_New-Fields-To-Motorcycle-Offer")]
+    partial class NewFieldsToMotorcycleOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,20 +223,15 @@ namespace AutomobileProject.Migrations
                     b.Property<string>("ImageId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CarOfferId")
+                    b.Property<int>("CarOfferId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int?>("MotorcycleOfferId")
-                        .HasColumnType("int");
-
                     b.HasKey("ImageId");
 
                     b.HasIndex("CarOfferId");
-
-                    b.HasIndex("MotorcycleOfferId");
 
                     b.ToTable("OfferImages");
                 });
@@ -485,11 +482,9 @@ namespace AutomobileProject.Migrations
                 {
                     b.HasOne("AutomobileProject.Data.Models.Offer.CarOffer", "CarOffer")
                         .WithMany()
-                        .HasForeignKey("CarOfferId");
-
-                    b.HasOne("AutomobileProject.Data.Models.Offer.MotorcycleOffer", "MotorcycleOffer")
-                        .WithMany()
-                        .HasForeignKey("MotorcycleOfferId");
+                        .HasForeignKey("CarOfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AutomobileProject.Data.Models.User.AspNetRoleClaims", b =>

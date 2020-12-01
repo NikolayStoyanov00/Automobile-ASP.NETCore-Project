@@ -31,4 +31,9 @@
     </Content>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Views\Motorcycles\" />
+  </ItemGroup>
+
 </Project>

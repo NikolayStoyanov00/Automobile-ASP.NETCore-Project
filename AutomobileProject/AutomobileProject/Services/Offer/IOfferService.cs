@@ -12,6 +12,6 @@ namespace AutomobileProject.Services.Offer
     {
         void AddCar(AddCarViewModel addOfferViewModel, string userId);
 
-        void AddMotorcycle(AddMotorcycleViewModel addOfferViewModel);
+        void AddMotorcycle(AddMotorcycleViewModel addOfferViewModel, string userId);
     }
 }

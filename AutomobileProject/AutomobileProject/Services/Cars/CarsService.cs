@@ -36,14 +36,14 @@ namespace AutomobileProject.Services.Offer
                 {
                     Id = carOffer.Id,
                     Title = carOffer.Title,
-                    Condition = carOffer.Condition,
+                    Condition = carOffer.Condition.ToString(),
                     Year = carOffer.Year,
-                    FuelType = carOffer.FuelType,
+                    FuelType = carOffer.FuelType.ToString(),
                     HorsePower = carOffer.HorsePower,
                     Price = carOffer.Price,
                     Kilometers = carOffer.Kilometers,
                     EngineSize = carOffer.EngineSize,
-                    Gearbox = carOffer.Gearbox,
+                    Gearbox = carOffer.Gearbox.ToString(),
                     Doors = carOffer.Doors
                 };
 
@@ -73,14 +73,14 @@ namespace AutomobileProject.Services.Offer
                 {
                     Id = carOffer.Id,
                     Title = carOffer.Title,
-                    Condition = carOffer.Condition,
+                    Condition = carOffer.Condition.ToString(),
                     Year = carOffer.Year,
-                    FuelType = carOffer.FuelType,
+                    FuelType = carOffer.FuelType.ToString(),
                     HorsePower = carOffer.HorsePower,
                     Price = carOffer.Price,
                     Kilometers = carOffer.Kilometers,
                     EngineSize = carOffer.EngineSize,
-                    Gearbox = carOffer.Gearbox,
+                    Gearbox = carOffer.Gearbox.ToString(),
                     Doors = carOffer.Doors
                 };
 
@@ -103,14 +103,14 @@ namespace AutomobileProject.Services.Offer
                 {
                     Id = carOffer.Id,
                     Title = carOffer.Title,
-                    Condition = carOffer.Condition,
+                    Condition = carOffer.Condition.ToString(),
                     Year = carOffer.Year,
-                    FuelType = carOffer.FuelType,
+                    FuelType = carOffer.FuelType.ToString(),
                     HorsePower = carOffer.HorsePower,
                     Price = carOffer.Price,
                     Kilometers = carOffer.Kilometers,
                     EngineSize = carOffer.EngineSize,
-                    Gearbox = carOffer.Gearbox,
+                    Gearbox = carOffer.Gearbox.ToString(),
                     Doors = carOffer.Doors
                 };
 
@@ -128,17 +128,17 @@ namespace AutomobileProject.Services.Offer
 
             var car = new VisualizeCarDetailsViewModel()
             {
-                Type = carOffer.Condition,
+                Type = carOffer.Condition.ToString(),
                 Make = carOffer.Make,
                 Model = carOffer.Model,
                 Year = carOffer.Year,
                 Kilometers = carOffer.Kilometers,
-                FuelType = carOffer.FuelType,
+                FuelType = carOffer.FuelType.ToString(),
                 HorsePower = carOffer.HorsePower,
                 Price = carOffer.Price,
                 Description = carOffer.Description,
                 EngineSize = carOffer.EngineSize,
-                Gearbox = carOffer.Gearbox,
+                Gearbox = carOffer.Gearbox.ToString(),
                 Color = carOffer.Color,
                 Doors = carOffer.Doors
             };
@@ -175,14 +175,14 @@ namespace AutomobileProject.Services.Offer
                 {
                     Id = carOffer.Id,
                     Title = carOffer.Title,
-                    Condition = carOffer.Condition,
+                    Condition = carOffer.Condition.ToString(),
                     Year = carOffer.Year,
-                    FuelType = carOffer.FuelType,
+                    FuelType = carOffer.FuelType.ToString(),
                     HorsePower = carOffer.HorsePower,
                     Price = carOffer.Price,
                     Kilometers = carOffer.Kilometers,
                     EngineSize = carOffer.EngineSize,
-                    Gearbox = carOffer.Gearbox,
+                    Gearbox = carOffer.Gearbox.ToString(),
                     Doors = carOffer.Doors
                 };
 

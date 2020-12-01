@@ -58,7 +58,14 @@ namespace AutomobileProject.Controllers
         [HttpPost]
         public IActionResult AddMotorcycle(AddMotorcycleViewModel offer)
         {
-            this.offerService.AddMotorcycle(offer);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!ModelState.IsValid)
+            {
+                return this.View(new AddMotorcycleViewModel(dbContext));
+            }
+
+            this.offerService.AddMotorcycle(offer, userId);
             return this.Redirect("/");
         }
     }
