@@ -58,6 +58,16 @@ namespace AutomobileProject.Controllers
             return this.View(userCarsToVisualize);
         }
 
+        [HttpPost]
+        public IActionResult UserCars(FiltersInputModel filtersInput)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var carsToVisualize = this.carsService.GetOnlyUserCars(userId, filtersInput);
+
+            return this.View(carsToVisualize);
+        }
+
+
         public IActionResult DeleteCar(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
