@@ -1,9 +1,13 @@
 ﻿@model AutomobileProject.ViewModels.Cars.FiltersInputModel
 @using AutomobileProject.ViewModels.Cars.Enums
 
+@{
+    var action = Context.Request.Path.Value.Substring(6);
+}
+
 <section class="featured-places">
     <div class="container">
-        <form method="post" asp-controller="Cars" asp-action="AllCars">
+        <form method="post" asp-controller="Cars" asp-action="@action">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">

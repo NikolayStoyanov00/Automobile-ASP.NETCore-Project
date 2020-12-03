@@ -228,7 +228,7 @@ namespace AutomobileProject.Services.Offer
 
             if (filtersInput.Condition != 0)
             {
-                filters += $"Condition = '{filtersInput.Condition.ToString()}' ";
+                filters += $"Condition = {(int)filtersInput.Condition} ";
             }
             else
             {
@@ -262,21 +262,21 @@ namespace AutomobileProject.Services.Offer
                             {
                                 if (filtersInput.FuelType != 0)
                                 {
-                                    filters += $"FuelType = '{filtersInput.FuelType.ToString()}' ";
+                                    filters += $"FuelType = {(int)filtersInput.FuelType}";
                                     fuelTypeFilter = true;
                                 }
                                 else
                                 {
                                     if (filtersInput.Gearbox != 0)
                                     {
-                                        filters += $"Gearbox = '{filtersInput.Gearbox.ToString()}' ";
+                                        filters += $"Gearbox = {(int)filtersInput.Gearbox} ";
                                         gearboxFilter = true;
                                     }
                                     else
                                     {
                                         if (filtersInput.SteeringWheelSide != 0)
                                         {
-                                            filters += $"SteeringWheelSide = '{filtersInput.SteeringWheelSide.ToString()}' ";
+                                            filters += $"SteeringWheelSide = {(int)filtersInput.SteeringWheelSide} ";
                                             steeringWheelSideFilter = true;
                                         }
                                         else
@@ -314,17 +314,17 @@ namespace AutomobileProject.Services.Offer
 
             if (filtersInput.FuelType != 0 && fuelTypeFilter == false)
             {
-                filters += $"and FuelType = '{filtersInput.FuelType.ToString()}' ";
+                filters += $"and FuelType = {(int)filtersInput.FuelType} ";
             }
 
             if (filtersInput.Gearbox != 0 && gearboxFilter == false)
             {
-                filters += $"and Gearbox = '{filtersInput.Gearbox.ToString()}' ";
+                filters += $"and Gearbox = {(int)filtersInput.Gearbox} ";
             }
 
             if (filtersInput.SteeringWheelSide != 0 && steeringWheelSideFilter == false)
             {
-                filters += $"and SteeringWheelSide = '{filtersInput.SteeringWheelSide.ToString()}' ";
+                filters += $"and SteeringWheelSide = {(int)filtersInput.SteeringWheelSide} ";
             }
 
             if (priceRangeFilter == false)
@@ -337,6 +337,43 @@ namespace AutomobileProject.Services.Offer
             filters += $"and (Year >= {filtersInput.MinYear} and Year <= {filtersInput.MaxYear}) ";
 
             return filters;
+        }
+
+        public ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, FiltersInputModel filtersInput)
+        {
+            var carOffersToVisualize = new List<VisualizeCarViewModel>();
+
+            var filtersQuery = GetFiltersAsQuery(filtersInput);
+
+            var carOffers = dbContext.CarOffers.FromSqlRaw(
+                "select * from CarOffers " +
+                $"where {filtersQuery}")
+                .ToList();
+
+
+            foreach (var carOffer in carOffers.Where(x => x.UserId == userId))
+            {
+                var car = new VisualizeCarViewModel()
+                {
+                    Id = carOffer.Id,
+                    Title = carOffer.Title,
+                    Condition = carOffer.Condition.ToString(),
+                    Year = carOffer.Year,
+                    FuelType = carOffer.FuelType.ToString(),
+                    HorsePower = carOffer.HorsePower,
+                    Price = carOffer.Price,
+                    Kilometers = carOffer.Kilometers,
+                    EngineSize = carOffer.EngineSize,
+                    Gearbox = carOffer.Gearbox.ToString(),
+                    Doors = carOffer.Doors
+                };
+
+                car.Image = ConvertByteArrayToImage(carOffer.OfferImage);
+
+                carOffersToVisualize.Add(car);
+            }
+
+            return carOffersToVisualize;
         }
     }
 }
