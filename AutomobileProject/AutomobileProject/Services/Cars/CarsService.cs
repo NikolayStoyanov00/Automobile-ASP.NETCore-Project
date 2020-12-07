@@ -55,6 +55,50 @@ namespace AutomobileProject.Services.Offer
             return carOffersToVisualize;
         }
 
+        public ICollection<VisualizeCarViewModel> CarsForVisualization(string sortingType)
+        {
+            var carOffersToVisualize = new List<VisualizeCarViewModel>();
+
+            var carOffers = dbContext.CarOffers.ToList();
+
+            if (sortingType == "Price")
+            {
+                carOffers = carOffers.OrderBy(x => x.Price).ToList();
+            }
+            else if (sortingType == "Year")
+            {
+                carOffers = carOffers.OrderBy(x => x.Year).ToList();
+            }
+            else if (sortingType == "UploadDate")
+            {
+                carOffers = carOffers.OrderBy(x => x.CreatedOn).ToList();
+            }
+
+            foreach (var carOffer in carOffers)
+            {
+                var car = new VisualizeCarViewModel()
+                {
+                    Id = carOffer.Id,
+                    Title = carOffer.Title,
+                    Condition = carOffer.Condition.ToString(),
+                    Year = carOffer.Year,
+                    FuelType = carOffer.FuelType.ToString(),
+                    HorsePower = carOffer.HorsePower,
+                    Price = carOffer.Price,
+                    Kilometers = carOffer.Kilometers,
+                    EngineSize = carOffer.EngineSize,
+                    Gearbox = carOffer.Gearbox.ToString(),
+                    Doors = carOffer.Doors
+                };
+
+                car.Image = ConvertByteArrayToImage(carOffer.OfferImage);
+
+                carOffersToVisualize.Add(car);
+            }
+
+            return carOffersToVisualize;
+        }
+
         public ICollection<VisualizeCarViewModel> CarsForVisualization(FiltersInputModel filtersInput)
         {
             var carOffersToVisualize = new List<VisualizeCarViewModel>();
@@ -194,7 +238,43 @@ namespace AutomobileProject.Services.Offer
             return userCarOffersToVisualize;
         }
 
-        
+        public ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, FiltersInputModel filtersInput)
+        {
+            var carOffersToVisualize = new List<VisualizeCarViewModel>();
+
+            var filtersQuery = GetFiltersAsQuery(filtersInput);
+
+            var carOffers = dbContext.CarOffers.FromSqlRaw(
+                "select * from CarOffers " +
+                $"where {filtersQuery}")
+                .ToList();
+
+
+            foreach (var carOffer in carOffers.Where(x => x.UserId == userId))
+            {
+                var car = new VisualizeCarViewModel()
+                {
+                    Id = carOffer.Id,
+                    Title = carOffer.Title,
+                    Condition = carOffer.Condition.ToString(),
+                    Year = carOffer.Year,
+                    FuelType = carOffer.FuelType.ToString(),
+                    HorsePower = carOffer.HorsePower,
+                    Price = carOffer.Price,
+                    Kilometers = carOffer.Kilometers,
+                    EngineSize = carOffer.EngineSize,
+                    Gearbox = carOffer.Gearbox.ToString(),
+                    Doors = carOffer.Doors
+                };
+
+                car.Image = ConvertByteArrayToImage(carOffer.OfferImage);
+
+                carOffersToVisualize.Add(car);
+            }
+
+            return carOffersToVisualize;
+        }
+
         public CarOffer GetCarOfferById(int offerId)
         {
             return dbContext.CarOffers.FirstOrDefault(x => x.Id == offerId);
@@ -202,6 +282,9 @@ namespace AutomobileProject.Services.Offer
 
         public void DeleteCarOffer(CarOffer carOffer)
         {
+            var offerImages = dbContext.OfferImages.Where(x => x.CarOfferId == carOffer.Id).ToList();
+            dbContext.OfferImages.RemoveRange(offerImages);
+
             dbContext.CarOffers.Remove(carOffer);
             dbContext.SaveChanges();
         }
@@ -337,43 +420,6 @@ namespace AutomobileProject.Services.Offer
             filters += $"and (Year >= {filtersInput.MinYear} and Year <= {filtersInput.MaxYear}) ";
 
             return filters;
-        }
-
-        public ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, FiltersInputModel filtersInput)
-        {
-            var carOffersToVisualize = new List<VisualizeCarViewModel>();
-
-            var filtersQuery = GetFiltersAsQuery(filtersInput);
-
-            var carOffers = dbContext.CarOffers.FromSqlRaw(
-                "select * from CarOffers " +
-                $"where {filtersQuery}")
-                .ToList();
-
-
-            foreach (var carOffer in carOffers.Where(x => x.UserId == userId))
-            {
-                var car = new VisualizeCarViewModel()
-                {
-                    Id = carOffer.Id,
-                    Title = carOffer.Title,
-                    Condition = carOffer.Condition.ToString(),
-                    Year = carOffer.Year,
-                    FuelType = carOffer.FuelType.ToString(),
-                    HorsePower = carOffer.HorsePower,
-                    Price = carOffer.Price,
-                    Kilometers = carOffer.Kilometers,
-                    EngineSize = carOffer.EngineSize,
-                    Gearbox = carOffer.Gearbox.ToString(),
-                    Doors = carOffer.Doors
-                };
-
-                car.Image = ConvertByteArrayToImage(carOffer.OfferImage);
-
-                carOffersToVisualize.Add(car);
-            }
-
-            return carOffersToVisualize;
         }
     }
 }

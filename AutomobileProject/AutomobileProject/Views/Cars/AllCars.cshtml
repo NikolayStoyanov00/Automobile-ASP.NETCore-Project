@@ -9,7 +9,7 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="banner-caption">
                     <div class="line-dec"></div>
-                    <h2>Cars</h2>
+                    <h2>Car Offers</h2>
                 </div>
             </div>
         </div>
@@ -17,9 +17,14 @@
 </section>
 
 <main>
-    <partial name="~/Views/Cars/PartialViews/_FiltersPartialView.cshtml" model="new AutomobileProject.ViewModels.Cars.FiltersInputModel()"/>
+    <partial name="~/Views/Cars/PartialViews/_FiltersPartialView.cshtml" model="new AutomobileProject.ViewModels.Cars.FiltersInputModel()" />
+
+    
 
     <section class="featured-places">
+
+        <partial name="~/Views/Cars/PartialViews/_SortingPartialView.cshtml"/>
+
         <div class="container">
             <div class="row">
                 @foreach (var car in Model)

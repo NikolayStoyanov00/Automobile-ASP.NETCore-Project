@@ -1,11 +1,4 @@
-﻿using AutomobileProject.ViewModels.Cars;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AutomobileProject.ViewModels.Offer
+﻿namespace AutomobileProject.ViewModels.Offer
 {
     public class VisualizeCarViewModel
     {
