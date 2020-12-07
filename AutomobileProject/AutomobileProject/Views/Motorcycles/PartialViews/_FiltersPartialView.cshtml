@@ -1,0 +1,116 @@
+﻿@model AutomobileProject.ViewModels.Motorcycles.FiltersInputModel
+@using AutomobileProject.ViewModels.Cars.Enums
+
+@{
+    var action = Context.Request.Path.Value.Substring(13);
+}
+
+<section class="featured-places">
+    <div class="container">
+        <form method="post" asp-controller="Motorcycles" asp-action="@action">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Condition:</label>
+                        <select style="color:black" asp-items="Html.GetEnumSelectList<Condition>()" asp-for="Condition" class="form-control">
+                            <option value="All">-- All --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label asp-for="Color">Color:</label>
+                        <input style="color:black" asp-for="Color" class="form-control" placeholder="-- All --" />
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label asp-for="Make">Make:</label>
+                        <select class="form-control" asp-for="Make" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
+                            <option value="All">-- All --</option>
+                            @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
+                            {
+                                <option class="form-control" style="color: black" value="@make">@make</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label asp-for="Model">Model:</label>
+                        <select class="form-control" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
+                            <option id="all" value="All">-- All --</option>
+                            @foreach (var motorcycle in Model.MakeModel.OrderBy(x => x.Model))
+                            {
+                                <option class="form-control" style="color: black" value="@motorcycle.Make">@motorcycle.Model</option>
+                            }
+                        </select>
+
+                        <input asp-for="Model" type="hidden" id="Model" name="Model" value="">
+                    </div>
+                </div>
+
+                <!--Script to set the Models to match the chosen Make-->
+                <script src="~/js/MakeModelScript/MakeModelFunctionalityScriptForFilters.js"></script>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label asp-for="FuelType"></label>
+                        <select class="form-control" asp-for="FuelType" asp-items="@Html.GetEnumSelectList<FuelType>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                            <option value="All">-- All --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label asp-for="Gearbox"></label>
+                        <select class="form-control" asp-for="Gearbox" asp-items="@Html.GetEnumSelectList<Gearbox>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                            <option value="All">-- All --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label>Price Range:</label>
+                    <div class="form-group">
+                        <span>
+                            from
+                            <input asp-for="MinPrice" type="number" value="0" min="0" max="1000000" />    to
+                            <input asp-for="MaxPrice" type="number" value="1000000" min="0" max="1000000" />
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label>Kilometers Range:</label>
+                    <div class="form-group">
+                        <span>
+                            from
+                            <input asp-for="MinKilometers" type="number" value="0" min="0" max="1000000" />    to
+                            <input asp-for="MaxKilometers" type="number" value="1000000" min="0" max="1000000" />
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label>Years of Producing Range:</label>
+                    <div class="form-group">
+                        <span>
+                            from
+                            <input asp-for="MinYear" type="number" value="1980" min="1800" max="@DateTime.Now.Year" />    to
+                            <input asp-for="MaxYear" type="number" value="2020" min="1800" max="@DateTime.Now.Year" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <input id="submitButton" name="submitButton" style="font:bold" class="btn btn-primary" type="submit" value="Filter" />
+            </div>
+        </form>
+    </div>
+</section>

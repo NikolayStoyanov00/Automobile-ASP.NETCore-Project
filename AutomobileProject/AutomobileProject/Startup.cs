@@ -16,6 +16,7 @@ using AutomobileProject.Data.Models;
 using Microsoft.CodeAnalysis.Options;
 using AutomobileProject.Data.Models.User;
 using AutomobileProject.Services.Offer;
+using AutomobileProject.Services.Motorcycles;
 
 namespace AutomobileProject
 {
@@ -47,6 +48,7 @@ namespace AutomobileProject
 
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<ICarsService, CarsService>();
+            services.AddScoped<IMotorcyclesService, MotorcyclesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,60 @@
+﻿@model ICollection<AutomobileProject.ViewModels.Motorcycles.VisualizeMotorcycleViewModel>
+@{
+    ViewData["Title"] = "Motorcycles";
+}
+
+<section class="banner banner-secondary" id="top" style="background-image: url('/img/motorcycle-banner.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>Your Motorcycle Offers</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main>
+    <partial name="~/Views/Motorcycles/PartialViews/_FiltersPartialView.cshtml" model="new AutomobileProject.ViewModels.Motorcycles.FiltersInputModel()" />
+
+    <section class="featured-places">
+        <div class="container">
+            <div class="row">
+                @foreach (var motorcycle in Model)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="featured-item">
+                            <div class="thumb">
+                                <div>
+                                    <a href="/Motorcycles/MotorcycleDetails?id=@motorcycle.Id">
+                                        <img src="@motorcycle.Image" height="360" width="240" style="object-fit: cover" alt="">
+                                    </a>
+                                </div>
+                                <div class="overlay-content">
+                                    <strong><i class="fa fa-dashboard"></i> @motorcycle.Kilometers</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><i class="fa fa-cube"></i> @motorcycle.CubicCentimeters cc</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><i class="fa fa-cog"></i> @motorcycle.Gearbox</strong>
+                                </div>
+                            </div>
+                            <div class="down-content">
+                                <h4>@motorcycle.Title</h4>
+
+                                <br>
+
+                                <p>@motorcycle.HorsePower hp  /  @motorcycle.FuelType  /  @motorcycle.Year  /  @motorcycle.Condition</p>
+
+                                <p><span><strong><sup>$</sup>@motorcycle.Price.00</strong></span></p>
+
+                                <div class="text-button">
+                                    <a href="/Motorcycles/MotorcycleDetails?id=@motorcycle.Id">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>

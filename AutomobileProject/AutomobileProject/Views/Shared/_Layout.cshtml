@@ -28,9 +28,9 @@
                     <div class="col-md-12">
                         <div style="float: left; position:relative; z-index:5;">
                             <a href="/">
-                                <img  src="~/Logo/logo.png" alt="Venue Logo">
+                                <img src="~/Logo/logo.png" alt="Venue Logo">
                             </a>
-                        </div> 
+                        </div>
                         <nav id="primary-nav" class="dropdown cf">
                             <ul class="dropdown menu">
 
@@ -42,28 +42,39 @@
                                     <a class="nav-link text-dark" asp-controller="Cars" asp-action="AllCars">Cars</a>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Motorcycles" asp-action="AllMotorcycles">Motorcycles</a>
+                                </li>
+
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li>
                                         <a href="#">Add Offer</a>
                                         <ul class="sub-menu">
-                                            <li><a asp-controller="Offer" asp-action="AddCar">Car</a></li>
-                                            <li><a asp-controller="Offer" asp-action="AddMotorcycle">Motorcycle</a></li>
+                                            <li>
+                                                <a asp-controller="Offer" asp-action="AddCar">Car</a>
+                                            </li>
+
+                                            <li>
+                                                <a asp-controller="Offer" asp-action="AddMotorcycle">Motorcycle</a>
+                                            </li>
                                         </ul>
                                     </li>
 
                                     <li>
                                         <a href="#">My Offers</a>
                                         <ul class="sub-menu">
-                                            <li><a asp-controller="Cars" asp-action="UserCars">Cars</a></li>
-                                            <li><a asp-controller="Motorcycles" asp-action="UserMotorcycles">Motorcycles</a></li>
+                                            <li>
+                                                <a asp-controller="Cars" asp-action="UserCars">Cars</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Motorcycles" asp-action="UserMotorcycles">Motorcycles</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 }
 
                                 <partial name="_LoginPartial" />
-
-                                <li><a class="nav-link" href="contact.html">Contact Us</a></li>
                             </ul>
                         </nav><!-- / #primary-nav -->
                     </div>
@@ -72,7 +83,7 @@
         </header>
     </div>
 
-        @RenderBody()
+    @RenderBody()
 
     <footer>
         <div class="container">

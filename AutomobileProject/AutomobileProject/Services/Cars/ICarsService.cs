@@ -13,8 +13,8 @@ namespace AutomobileProject.Services.Offer
     {
         ICollection<VisualizeCarViewModel> CarsForVisualization(FiltersInputModel filters);
         ICollection<VisualizeCarViewModel> CarsForVisualization();
+        ICollection<VisualizeCarViewModel> CarsForVisualization(string sortingType);
         ICollection<VisualizeCarViewModel> CarsForFeaturing();
-
 
         VisualizeCarDetailsViewModel GetCarById(int id);
 

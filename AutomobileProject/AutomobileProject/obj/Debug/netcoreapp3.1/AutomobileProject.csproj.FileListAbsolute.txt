@@ -201,3 +201,7 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\AllCars.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Cars\PartialViews\_FiltersPartialView.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\scopedcss\bundle\AutomobileProject.styles.css
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Motorcycles\AllMotorcycles.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Motorcycles\PartialViews\_FiltersPartialView.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Motorcycles\MotorcycleDetails.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\netcoreapp3.1\Razor\Views\Motorcycles\UserMotorcycles.cshtml.g.cs

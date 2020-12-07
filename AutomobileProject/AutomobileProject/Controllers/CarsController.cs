@@ -30,8 +30,14 @@ namespace AutomobileProject.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult AllCars()
+        public IActionResult AllCars(string sortingType)
         {
+            if (!string.IsNullOrEmpty(sortingType))
+            {
+                var sortedCarsToVisualize = this.carsService.CarsForVisualization(sortingType);
+                return this.View(sortedCarsToVisualize);
+            }
+
             var carsToVisualize = this.carsService.CarsForVisualization();
             return this.View(carsToVisualize);
         }

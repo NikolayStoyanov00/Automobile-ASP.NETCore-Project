@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-AutomobileProject-4C4EDE99-3C55-4417-A5C4-645E380E7E74</UserSecretsId>
   </PropertyGroup>
 
@@ -29,11 +29,6 @@
     <Content Update="wwwroot\img\banner-image-1-1920x300.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Views\Motorcycles\" />
   </ItemGroup>
 
 </Project>
