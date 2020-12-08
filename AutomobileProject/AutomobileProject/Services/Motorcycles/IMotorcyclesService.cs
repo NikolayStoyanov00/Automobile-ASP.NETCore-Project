@@ -8,10 +8,13 @@ namespace AutomobileProject.Services.Motorcycles
     {
         ICollection<VisualizeMotorcycleViewModel> MotorcyclesForVisualization(FiltersInputModel filters);
         ICollection<VisualizeMotorcycleViewModel> MotorcyclesForVisualization();
+        ICollection<VisualizeMotorcycleViewModel> MotorcyclesForVisualization(string sortingType);
+
         VisualizeMotorcycleDetailsViewModel GetMotorcycleById(int id);
         MotorcycleOffer GetMotorcycleOfferById(int offerId);
 
         ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId);
+        ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId, string sortingType);
         ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId, FiltersInputModel filters);
         void DeleteMotorcycleOffer(MotorcycleOffer motorcycleOffer);
     }

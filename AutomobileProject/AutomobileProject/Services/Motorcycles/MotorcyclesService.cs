@@ -81,6 +81,59 @@ namespace AutomobileProject.Services.Motorcycles
             return motorcycleOffersToVisualize;
         }
 
+        public ICollection<VisualizeMotorcycleViewModel> MotorcyclesForVisualization(string sortingType)
+        {
+            var motorcycleOffersToVisualize = new List<VisualizeMotorcycleViewModel>();
+
+            var motorcycleOffers = dbContext.MotorcycleOffers.ToList();
+
+            if (sortingType == "UploadDate")
+            {
+                motorcycleOffers = motorcycleOffers.OrderByDescending(x => x.CreatedOn).ToList();
+            }
+
+            else if (sortingType == "LowestPrice")
+            {
+                motorcycleOffers = motorcycleOffers.OrderBy(x => x.Price).ToList();
+            }
+            else if (sortingType == "HighestPrice")
+            {
+                motorcycleOffers = motorcycleOffers.OrderByDescending(x => x.Price).ToList();
+            }
+
+            else if (sortingType == "OldestYear")
+            {
+                motorcycleOffers = motorcycleOffers.OrderBy(x => x.Year).ToList();
+            }
+            else if (sortingType == "NewestYear")
+            {
+                motorcycleOffers = motorcycleOffers.OrderByDescending(x => x.Year).ToList();
+            }
+
+            foreach (var motorcycleOffer in motorcycleOffers)
+            {
+                var motorcycle = new VisualizeMotorcycleViewModel()
+                {
+                    Id = motorcycleOffer.Id,
+                    Title = motorcycleOffer.Title,
+                    Condition = motorcycleOffer.Condition.ToString(),
+                    Year = motorcycleOffer.Year,
+                    FuelType = motorcycleOffer.FuelType.ToString(),
+                    HorsePower = motorcycleOffer.HorsePower,
+                    Price = motorcycleOffer.Price,
+                    Kilometers = motorcycleOffer.Kilometers,
+                    CubicCentimeters = motorcycleOffer.CubicCentimeters,
+                    Gearbox = motorcycleOffer.Gearbox.ToString(),
+                };
+
+                motorcycle.Image = ConvertByteArrayToImage(motorcycleOffer.OfferImage);
+
+                motorcycleOffersToVisualize.Add(motorcycle);
+            }
+
+            return motorcycleOffersToVisualize;
+        }
+
         public VisualizeMotorcycleDetailsViewModel GetMotorcycleById(int id)
         {
             var motorcycleOffer = dbContext.MotorcycleOffers.FirstOrDefault(x => x.Id == id);
@@ -150,6 +203,61 @@ namespace AutomobileProject.Services.Motorcycles
 
             return userMotorcycleOffersToVisualize;
         }
+
+        public ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId, string sortingType)
+        {
+            var userMotorcycleOffersToVisualize = new List<VisualizeMotorcycleViewModel>();
+
+            var motorcycleOffers = dbContext.MotorcycleOffers.Where(x => x.UserId == userId).ToList();
+
+            if (sortingType == "UploadDate")
+            {
+                motorcycleOffers = motorcycleOffers.OrderByDescending(x => x.CreatedOn).ToList();
+            }
+
+            else if (sortingType == "LowestPrice")
+            {
+                motorcycleOffers = motorcycleOffers.OrderBy(x => x.Price).ToList();
+            }
+            else if (sortingType == "HighestPrice")
+            {
+                motorcycleOffers = motorcycleOffers.OrderByDescending(x => x.Price).ToList();
+            }
+
+            else if (sortingType == "OldestYear")
+            {
+                motorcycleOffers = motorcycleOffers.OrderBy(x => x.Year).ToList();
+            }
+            else if (sortingType == "NewestYear")
+            {
+                motorcycleOffers = motorcycleOffers.OrderByDescending(x => x.Year).ToList();
+            }
+
+
+            foreach (var motorcycleOffer in motorcycleOffers)
+            {
+                var motorcycle = new VisualizeMotorcycleViewModel()
+                {
+                    Id = motorcycleOffer.Id,
+                    Title = motorcycleOffer.Title,
+                    Condition = motorcycleOffer.Condition.ToString(),
+                    Year = motorcycleOffer.Year,
+                    FuelType = motorcycleOffer.FuelType.ToString(),
+                    HorsePower = motorcycleOffer.HorsePower,
+                    Price = motorcycleOffer.Price,
+                    Kilometers = motorcycleOffer.Kilometers,
+                    CubicCentimeters = motorcycleOffer.CubicCentimeters,
+                    Gearbox = motorcycleOffer.Gearbox.ToString(),
+                };
+
+                motorcycle.Image = ConvertByteArrayToImage(motorcycleOffer.OfferImage);
+
+                userMotorcycleOffersToVisualize.Add(motorcycle);
+            }
+
+            return userMotorcycleOffersToVisualize;
+        }
+
         public ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId, FiltersInputModel filtersInput)
         {
             var motorcycleOffersToVisualize = new List<VisualizeMotorcycleViewModel>();

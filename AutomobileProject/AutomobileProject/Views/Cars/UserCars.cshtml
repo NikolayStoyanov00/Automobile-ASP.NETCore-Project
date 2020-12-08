@@ -20,6 +20,9 @@
     <partial name="~/Views/Cars/PartialViews/_FiltersPartialView.cshtml" model="new AutomobileProject.ViewModels.Cars.FiltersInputModel()"/>
 
     <section class="featured-places">
+
+        <partial name="~/Views/SharedPartialViews/_SortingPartialView.cshtml" />
+
         <div class="container">
             <div class="row">
                 @foreach (var car in Model)

@@ -14,8 +14,14 @@ namespace AutomobileProject.Controllers
             this.motorcyclesService = motorcyclesService;
         }
 
-        public IActionResult AllMotorcycles()
+        public IActionResult AllMotorcycles(string sortingType)
         {
+            if (!string.IsNullOrEmpty(sortingType))
+            {
+                var sortedMotorcyclesToVisualize = this.motorcyclesService.MotorcyclesForVisualization(sortingType);
+                return this.View(sortedMotorcyclesToVisualize);
+            }
+
             var motorcyclesToVisualize = this.motorcyclesService.MotorcyclesForVisualization();
 
             return this.View(motorcyclesToVisualize);
@@ -29,9 +35,16 @@ namespace AutomobileProject.Controllers
             return this.View(motorcyclesToVisualize);
         }
 
-        public IActionResult UserMotorcycles()
+        public IActionResult UserMotorcycles(string sortingType)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!string.IsNullOrEmpty(sortingType))
+            {
+                var sortedUserMotorcyclesToVisualize = this.motorcyclesService.GetOnlyUserMotorcycles(userId, sortingType);
+                return this.View(sortedUserMotorcyclesToVisualize);
+            }
+
             var userCarsToVisualize = this.motorcyclesService.GetOnlyUserMotorcycles(userId);
 
             return this.View(userCarsToVisualize);

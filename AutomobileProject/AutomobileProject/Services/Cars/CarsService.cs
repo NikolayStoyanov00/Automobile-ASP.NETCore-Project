@@ -61,17 +61,27 @@ namespace AutomobileProject.Services.Offer
 
             var carOffers = dbContext.CarOffers.ToList();
 
-            if (sortingType == "Price")
+            if (sortingType == "UploadDate")
+            {
+                carOffers = carOffers.OrderByDescending(x => x.CreatedOn).ToList();
+            }
+
+            else if (sortingType == "LowestPrice")
             {
                 carOffers = carOffers.OrderBy(x => x.Price).ToList();
             }
-            else if (sortingType == "Year")
+            else if (sortingType == "HighestPrice")
+            {
+                carOffers = carOffers.OrderByDescending(x => x.Price).ToList();
+            }
+
+            else if (sortingType == "OldestYear")
             {
                 carOffers = carOffers.OrderBy(x => x.Year).ToList();
             }
-            else if (sortingType == "UploadDate")
+            else if (sortingType == "NewestYear")
             {
-                carOffers = carOffers.OrderBy(x => x.CreatedOn).ToList();
+                carOffers = carOffers.OrderByDescending(x => x.Year).ToList();
             }
 
             foreach (var carOffer in carOffers)
@@ -237,6 +247,61 @@ namespace AutomobileProject.Services.Offer
 
             return userCarOffersToVisualize;
         }
+
+        public ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, string sortingType)
+        {
+            var userCarOffersToVisualize = new List<VisualizeCarViewModel>();
+
+            var carOffers = dbContext.CarOffers.Where(x => x.UserId == userId).ToList();
+
+            if (sortingType == "UploadDate")
+            {
+                carOffers = carOffers.OrderByDescending(x => x.CreatedOn).ToList();
+            }
+
+            else if (sortingType == "LowestPrice")
+            {
+                carOffers = carOffers.OrderBy(x => x.Price).ToList();
+            }
+            else if (sortingType == "HighestPrice")
+            {
+                carOffers = carOffers.OrderByDescending(x => x.Price).ToList();
+            }
+
+            else if (sortingType == "OldestYear")
+            {
+                carOffers = carOffers.OrderBy(x => x.Year).ToList();
+            }
+            else if (sortingType == "NewestYear")
+            {
+                carOffers = carOffers.OrderByDescending(x => x.Year).ToList();
+            }
+
+            foreach (var carOffer in carOffers)
+            {
+                var car = new VisualizeCarViewModel()
+                {
+                    Id = carOffer.Id,
+                    Title = carOffer.Title,
+                    Condition = carOffer.Condition.ToString(),
+                    Year = carOffer.Year,
+                    FuelType = carOffer.FuelType.ToString(),
+                    HorsePower = carOffer.HorsePower,
+                    Price = carOffer.Price,
+                    Kilometers = carOffer.Kilometers,
+                    EngineSize = carOffer.EngineSize,
+                    Gearbox = carOffer.Gearbox.ToString(),
+                    Doors = carOffer.Doors
+                };
+
+                car.Image = ConvertByteArrayToImage(carOffer.OfferImage);
+
+                userCarOffersToVisualize.Add(car);
+            }
+
+            return userCarOffersToVisualize;
+        }
+
 
         public ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, FiltersInputModel filtersInput)
         {

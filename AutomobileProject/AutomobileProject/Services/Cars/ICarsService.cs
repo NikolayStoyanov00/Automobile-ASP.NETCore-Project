@@ -19,6 +19,7 @@ namespace AutomobileProject.Services.Offer
         VisualizeCarDetailsViewModel GetCarById(int id);
 
         ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId);
+        ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, string sortingType);
         ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, FiltersInputModel filters);
 
         CarOffer GetCarOfferById(int offerId);

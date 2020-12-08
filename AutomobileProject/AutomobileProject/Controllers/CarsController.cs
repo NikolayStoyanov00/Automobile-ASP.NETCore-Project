@@ -56,11 +56,17 @@ namespace AutomobileProject.Controllers
             return this.View(carOffer);
         }
 
-        public IActionResult UserCars()
+        public IActionResult UserCars(string sortingType)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userCarsToVisualize = this.carsService.GetOnlyUserCars(userId);
 
+            if (!string.IsNullOrEmpty(sortingType))
+            {
+                var sortedUserCarsToVisualize = this.carsService.GetOnlyUserCars(userId, sortingType);
+                return this.View(sortedUserCarsToVisualize);
+            }
+
+            var userCarsToVisualize = this.carsService.GetOnlyUserCars(userId);
             return this.View(userCarsToVisualize);
         }
 
