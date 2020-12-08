@@ -189,4 +189,4 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Aut
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\ref\AutomobileProject.dll
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\AutomobileProject.pdb
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\AutomobileProject.genruntimeconfig.cache
-D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\Cars\PartialViews\_SortingPartialView.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\SharedPartialViews\_SortingPartialView.cshtml.g.cs

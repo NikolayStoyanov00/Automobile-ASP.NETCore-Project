@@ -1,0 +1,15 @@
+﻿<div style="position: relative; bottom:40px" class="dropdown; text-center">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Sort By
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a asp-route-sortingType="UploadDate">Most Recent</a></li>
+        <li class="divider"></li>
+        <li><a asp-route-sortingType="LowestPrice">Lowest Price</a></li>
+        <li><a asp-route-sortingType="HighestPrice">Highest Price</a></li>
+        <li class="divider"></li>
+        <li><a asp-route-sortingType="OldestYear">Oldest Year</a></li>
+        <li><a asp-route-sortingType="NewestYear">Newest Year</a></li>
+    </ul>
+</div>
