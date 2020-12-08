@@ -6,14 +6,23 @@
 
 <link rel="stylesheet" href="~/css/imagePreviewStyle.css">
 
+<section class="banner banner-secondary" id="top" style="background-image: url('/img/motorcycle-banner.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>Add a Motorcycle Offer</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="container">
     <main role="main" class="pb-3">
         <form col-md-4 class="form-horizontal" asp-controller="Offer" asp-action="AddMotorcycle" method="post" enctype="multipart/form-data" id="form">
             <fieldset>
-
-                <!-- Form Name -->
-                <legend>Add a Motorcycle offer</legend>
-
                 <div asp-validation-summary="All" class="text-danger form-group"></div>
 
                 <!-- Text input-->
