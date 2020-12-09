@@ -1,6 +1,7 @@
 ﻿using System;
 using AutomobileProject.Data.Models.Offer;
 using AutomobileProject.Data.Models.User;
+using AutomobileProject.Data.Models.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -30,6 +31,8 @@ namespace AutomobileProject.Data.Models
         public virtual DbSet<CarOffer> CarOffers { get; set; }
         public virtual DbSet<OfferImage> OfferImages { get; set; }
         public virtual DbSet<MotorcycleOffer> MotorcycleOffers { get; set; }
+        public virtual DbSet<ElectricScooter> ElectricScooters { get; set; }
+        public virtual DbSet<ElectricScooterOffer> ElectricScooterOffers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

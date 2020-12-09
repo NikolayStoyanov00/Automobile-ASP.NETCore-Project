@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutomobileProject.Data.Models.Vehicles;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AutomobileProject.Data.Models.Offer
 {
@@ -22,5 +20,8 @@ namespace AutomobileProject.Data.Models.Offer
 
         public Nullable<int> MotorcycleOfferId { get; set; }
         public MotorcycleOffer MotorcycleOffer { get; set; }
+
+        public Nullable<int> ElectricScooterOfferId { get; set; }
+        public ElectricScooter ElectricScooterOffer { get; set; }
     }
 }

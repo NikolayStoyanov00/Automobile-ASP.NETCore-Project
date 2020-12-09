@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AutomobileProject.Data.Models
+﻿namespace AutomobileProject.Data.Models
 {
     public partial class Motorcycle
     {
