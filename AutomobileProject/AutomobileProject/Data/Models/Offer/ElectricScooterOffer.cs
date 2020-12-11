@@ -39,17 +39,24 @@ namespace AutomobileProject.Data.Models.Offer
         [Required]
         public int TravellingDistance { get; set; }
 
+<<<<<<< HEAD
 
         [Required]
         public string Battery { get; set; }
 
+=======
+>>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
         [Required]
         public int MaxSpeedAchievable { get; set; }
 
         [Required]
         public int MaxWeight { get; set; }
 
+<<<<<<< HEAD
         public string WaterproofLevel { get; set; }
+=======
+        public int WaterproofLevel { get; set; }
+>>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
 
         [Required]
         public int Kilometers { get; set; }

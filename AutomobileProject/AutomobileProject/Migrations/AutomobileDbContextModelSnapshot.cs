@@ -151,10 +151,13 @@ namespace AutomobileProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+<<<<<<< HEAD
                     b.Property<string>("Battery")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+=======
+>>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
                     b.Property<int>("Condition")
                         .HasColumnType("int");
 
@@ -213,8 +216,13 @@ namespace AutomobileProject.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+<<<<<<< HEAD
                     b.Property<string>("WaterproofLevel")
                         .HasColumnType("nvarchar(max)");
+=======
+                    b.Property<int>("WaterproofLevel")
+                        .HasColumnType("int");
+>>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
 
                     b.Property<int?>("Year")
                         .HasColumnType("int");
@@ -567,7 +575,11 @@ namespace AutomobileProject.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< HEAD
                     b.Property<int?>("Year")
+=======
+                    b.Property<int>("Year")
+>>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
                         .HasColumnType("int");
 
                     b.HasKey("Id");

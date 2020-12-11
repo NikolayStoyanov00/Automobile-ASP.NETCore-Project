@@ -68,6 +68,7 @@ namespace AutomobileProject.Controllers
             this.offerService.AddMotorcycle(offer, userId);
             return this.Redirect("/");
         }
+<<<<<<< HEAD
 
 
         [Authorize]
@@ -90,5 +91,7 @@ namespace AutomobileProject.Controllers
             this.offerService.AddElectricScooter(offer, userId);
             return this.Redirect("/");
         }
+=======
+>>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
     }
 }
