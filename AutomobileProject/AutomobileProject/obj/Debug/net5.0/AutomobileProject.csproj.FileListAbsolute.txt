@@ -190,8 +190,5 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\ref
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\AutomobileProject.pdb
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\AutomobileProject.genruntimeconfig.cache
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\SharedPartialViews\_SortingPartialView.cshtml.g.cs
-<<<<<<< HEAD
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\Offer\AddElectricScooter.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\ElectricScooters\AllElectricScooters.cshtml.g.cs
-=======
->>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1

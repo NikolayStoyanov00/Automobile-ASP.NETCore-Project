@@ -111,27 +111,6 @@ namespace AutomobileProject.Services.Offer
             dbContext.SaveChanges();
         }
 
-<<<<<<< HEAD
-=======
-        protected OfferImage GetOfferImage(MemoryStream target, int offerId, string offerType)
-        {
-            var offerImage = new OfferImage()
-            {
-                Image = target.ToArray(),
-            };
-
-            if (offerType == "CarOffer")
-            {
-                offerImage.CarOfferId = offerId;
-            }
-            else if (offerType == "MotorcycleOffer")
-            {
-                offerImage.MotorcycleOfferId = offerId;
-            }
-
-            return offerImage;
-        }
->>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
 
         public void AddMotorcycle(AddMotorcycleViewModel addMotorcycleViewModel, string userId)
         {
@@ -221,7 +200,6 @@ namespace AutomobileProject.Services.Offer
 
             dbContext.SaveChanges();
         }
-<<<<<<< HEAD
 
         public void AddElectricScooter(AddElectricScooterViewModel addScooterViewModel, string userId)
         {
@@ -336,7 +314,5 @@ namespace AutomobileProject.Services.Offer
 
             return offerImage;
         }
-=======
->>>>>>> f5b16ee745ca8bc92e12e4c5a2194c3b80e6a8a1
     }
 }
