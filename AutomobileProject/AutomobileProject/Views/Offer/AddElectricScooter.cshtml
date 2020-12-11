@@ -1,0 +1,229 @@
+﻿@model AutomobileProject.ViewModels.Offer.AddElectricScooterViewModel
+@using AutomobileProject.ViewModels.Cars.Enums
+@{
+    ViewData["Title"] = "Add";
+}
+
+<link rel="stylesheet" href="~/css/imagePreviewStyle.css">
+
+<section class="banner banner-secondary" id="top" style="background-image: url('/img/banner-image-1-1920x300.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>Add an Electric Scooter Offer</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <main role="main" class="pb-3">
+        <form col-md-4 class="form-horizontal" asp-controller="Offer" asp-action="AddElectricScooter" method="post" enctype="multipart/form-data" id="form">
+            <fieldset>
+                <div asp-validation-summary="All" class="text-danger form-group"></div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input style="color:black" asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <!-- Select Make-->
+                <div class="form-group">
+                    <label asp-for="Make"></label>
+                    <select class="form-control" asp-for="Make" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
+                        <option></option>
+                        @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
+                        {
+                            <option class="form-control" style="color: black" value="@make">@make</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Make" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Model"></label>
+                    <select class="form-control" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
+                        @foreach (var scooter in Model.MakeModel.OrderBy(x => x.Model))
+                        {
+                            <option class="form-control" style="color: black" value="@scooter.Make">@scooter.Model</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Model" class="text-danger"></span>
+
+                    <input asp-for="Model" type="hidden" id="Model" name="Model" value="">
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Year"></label>
+                    <input style="color:black" asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input style="color:black" asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <!-- Select condition-->
+                <div class="form-group">
+                    <label asp-for="Condition"></label>
+                    <select class="form-control" asp-for="Condition" asp-items="@Html.GetEnumSelectList<Condition>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                    </select>
+                    <span asp-validation-for="Condition" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="MotorPower"></label>
+                    <input style="color:black" asp-for="MotorPower" class="form-control" />
+                    <span asp-validation-for="MotorPower" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="MaxSpeedAchievable"></label>
+                    <input style="color:black" asp-for="MaxSpeedAchievable" class="form-control" />
+                    <span asp-validation-for="MaxSpeedAchievable" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Battery"></label>
+                    <input style="color:black" asp-for="Battery" class="form-control" />
+                    <span asp-validation-for="Battery" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="TravellingDistance"></label>
+                    <input style="color:black" asp-for="TravellingDistance" class="form-control" />
+                    <span asp-validation-for="TravellingDistance" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="MaxWeight"></label>
+                    <input style="color:black" asp-for="MaxWeight" class="form-control" />
+                    <span asp-validation-for="MaxWeight" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="WaterproofLevel"></label>
+                    <input style="color:black" asp-for="WaterproofLevel" class="form-control" />
+                    <span asp-validation-for="WaterproofLevel" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="ScooterSize"></label>
+                    <input style="color:black" asp-for="ScooterSize" class="form-control" />
+                    <span asp-validation-for="ScooterSize" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="TiresSize"></label>
+                    <input style="color:black" asp-for="TiresSize" class="form-control" />
+                    <span asp-validation-for="TiresSize" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Kilometers"></label>
+                    <input style="color:black" asp-for="Kilometers" class="form-control" />
+                    <span asp-validation-for="Kilometers" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea style="color:black" asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label asp-for="ContactNumber"></label>
+                    <input style="color:black" asp-for="ContactNumber" class="form-control" />
+                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Image upload-->
+                <div class="form-group">
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="MainImageFile" id="imageFile">
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image" />
+                            <span class="image-preview__default-text">Main Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="SecondImageFile" id="secondImage">
+                        <div class="image-preview" id="secondImagePreview">
+                            <img src="" alt="Image Preview" class="secondImage-preview__image" />
+                            <span class="secondImage-preview__default-text">Second Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="ThirdImageFile" id="thirdImage">
+                        <div class="image-preview" id="thirdImagePreview">
+                            <img src="" alt="Image Preview" class="thirdImage-preview__image" />
+                            <span class="thirdImage-preview__default-text">Third Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="FourthImageFile" id="fourthImage">
+                        <div class="image-preview" id="fourthImagePreview">
+                            <img src="" alt="Image Preview" class="fourthImage-preview__image" />
+                            <span class="fourthImage-preview__default-text">Fourth Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="FifthImageFile" id="fifthImage">
+                        <div class="image-preview" id="fifthImagePreview">
+                            <img src="" alt="Image Preview" class="fifthImage-preview__image" />
+                            <span class="fifthImage-preview__default-text">Fifth Image</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group; col-md-4 col-sm-6 col-xs-12">
+                        <input class="control-label btn-primary" style="padding: 1em; position:relative;" type="file" accept="image/*" asp-for="SixthImageFile" id="sixthImage">
+                        <div class="image-preview" id="sixthImagePreview">
+                            <img src="" alt="Image Preview" class="sixthImage-preview__image" />
+                            <span class="sixthImage-preview__default-text">Sixth Image</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Image Scripts -->
+                <script src="~/js/ImageScripts/FirstImageScript.js"></script>
+                <script src="~/js/ImageScripts/SecondImageScript.js"></script>
+                <script src="~/js/ImageScripts/ThirdImageScript.js"></script>
+                <script src="~/js/ImageScripts/FourthImageScript.js"></script>
+                <script src="~/js/ImageScripts/FifthImageScript.js"></script>
+                <script src="~/js/ImageScripts/SixthImageScript.js"></script>
+
+                <!--Script to set the Models to match the chosen Make-->
+                <script src="~/js/MakeModelScript/MakeModelFunctionalityScript.js"></script>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <button style="width:150px; float:right" id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </main>
+</div>

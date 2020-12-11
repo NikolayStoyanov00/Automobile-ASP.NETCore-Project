@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace AutomobileProject.Data.Models.Vehicles
 {
@@ -11,6 +12,6 @@ namespace AutomobileProject.Data.Models.Vehicles
 
         public string Model { get; set; }
 
-        public int Year { get; set; }
+        public Nullable<int> Year { get; set; }
     }
 }

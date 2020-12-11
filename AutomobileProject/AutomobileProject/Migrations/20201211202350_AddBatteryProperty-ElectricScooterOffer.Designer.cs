@@ -4,14 +4,16 @@ using AutomobileProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutomobileProject.Migrations
 {
     [DbContext(typeof(AutomobileDbContext))]
-    partial class AutomobileDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201211202350_AddBatteryProperty-ElectricScooterOffer")]
+    partial class AddBatteryPropertyElectricScooterOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,8 +215,8 @@ namespace AutomobileProject.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("WaterproofLevel")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("WaterproofLevel")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Year")
                         .HasColumnType("int");

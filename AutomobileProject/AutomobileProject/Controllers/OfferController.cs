@@ -68,5 +68,27 @@ namespace AutomobileProject.Controllers
             this.offerService.AddMotorcycle(offer, userId);
             return this.Redirect("/");
         }
+
+
+        [Authorize]
+        public IActionResult AddElectricScooter()
+        {
+            return View(new AddElectricScooterViewModel(dbContext));
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddElectricScooter(AddElectricScooterViewModel offer)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!ModelState.IsValid)
+            {
+                return this.View(new AddElectricScooterViewModel(dbContext));
+            }
+
+            this.offerService.AddElectricScooter(offer, userId);
+            return this.Redirect("/");
+        }
     }
 }

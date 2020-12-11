@@ -1,0 +1,63 @@
+﻿@model ICollection<AutomobileProject.ViewModels.ElectricScooters.VisualizeScooterViewModel>
+@{
+    ViewData["Title"] = "Electric Scooters";
+}
+
+<section class="banner banner-secondary" id="top" style="background-image: url('/img/banner-image-1-1920x300.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>Electric Scooter Offers</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main>
+    <partial name="~/Views/Cars/PartialViews/_FiltersPartialView.cshtml" model="new AutomobileProject.ViewModels.Cars.FiltersInputModel()" />
+
+    <section class="featured-places">
+
+        <partial name="~/Views/SharedPartialViews/_SortingPartialView.cshtml"/>
+
+        <div class="container">
+            <div class="row">
+                @foreach (var scooter in Model)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="featured-item">
+                            <div class="thumb">
+                                <div>
+                                    <a href="/ElectricScooters/ScooterDetails?id=@scooter.Id">
+                                        <img src="@scooter.Image" height="360" width="240" style="object-fit: cover" alt="">
+                                    </a>
+                                </div>
+                                <div class="overlay-content">
+                                    <strong><i class="fa fa-dashboard"></i> @scooter.Kilometers</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><i class="fa fa-cube"></i> @scooter.MotorPower W</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><i class="fa fa-cog"></i> @scooter.Battery</strong>
+                                </div>
+                            </div>
+                            <div class="down-content">
+                                <h4>@scooter.Title</h4>
+
+                                <br>
+
+                                <p>@scooter.WaterproofLevel waterproof /  @scooter.Year  /  @scooter.Condition</p>
+
+                                <p><span><strong><sup>$</sup>@scooter.Price.00</strong></span></p>
+
+                                <div class="text-button">
+                                    <a href="/ElectricScooters/ScooterDetails?id=@scooter.Id">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>

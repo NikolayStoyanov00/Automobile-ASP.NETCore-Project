@@ -1,10 +1,4 @@
-﻿using AutomobileProject.Data.Models;
-using AutomobileProject.Data.Models.Offer;
-using AutomobileProject.ViewModels.Offer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutomobileProject.ViewModels.Offer;
 
 namespace AutomobileProject.Services.Offer
 {
@@ -13,5 +7,7 @@ namespace AutomobileProject.Services.Offer
         void AddCar(AddCarViewModel addOfferViewModel, string userId);
 
         void AddMotorcycle(AddMotorcycleViewModel addOfferViewModel, string userId);
+
+        void AddElectricScooter(AddElectricScooterViewModel addOfferViewModel, string userId);
     }
 }

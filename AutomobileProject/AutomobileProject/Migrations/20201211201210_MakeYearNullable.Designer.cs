@@ -4,14 +4,16 @@ using AutomobileProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutomobileProject.Migrations
 {
     [DbContext(typeof(AutomobileDbContext))]
-    partial class AutomobileDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201211201210_MakeYearNullable")]
+    partial class MakeYearNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,10 +153,6 @@ namespace AutomobileProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Battery")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Condition")
                         .HasColumnType("int");
 
@@ -213,8 +211,8 @@ namespace AutomobileProject.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("WaterproofLevel")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("WaterproofLevel")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Year")
                         .HasColumnType("int");

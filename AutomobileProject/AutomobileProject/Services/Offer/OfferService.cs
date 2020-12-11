@@ -111,24 +111,6 @@ namespace AutomobileProject.Services.Offer
             dbContext.SaveChanges();
         }
 
-        protected OfferImage GetOfferImage(MemoryStream target, int offerId, string offerType)
-        {
-            var offerImage = new OfferImage()
-            {
-                Image = target.ToArray(),
-            };
-
-            if (offerType == "CarOffer")
-            {
-                offerImage.CarOfferId = offerId;
-            }
-            else if (offerType == "MotorcycleOffer")
-            {
-                offerImage.MotorcycleOfferId = offerId;
-            }
-
-            return offerImage;
-        }
 
         public void AddMotorcycle(AddMotorcycleViewModel addMotorcycleViewModel, string userId)
         {
@@ -217,6 +199,120 @@ namespace AutomobileProject.Services.Offer
             }
 
             dbContext.SaveChanges();
+        }
+
+        public void AddElectricScooter(AddElectricScooterViewModel addScooterViewModel, string userId)
+        {
+            var offer = new ElectricScooterOffer()
+            {
+                Title = addScooterViewModel.Title,
+                Make = addScooterViewModel.Make,
+                Model = addScooterViewModel.Model,
+                Year = addScooterViewModel.Year,
+                Price = addScooterViewModel.Price,
+                MaxSpeedAchievable = addScooterViewModel.MaxSpeedAchievable,
+                Battery = addScooterViewModel.Battery,
+                MaxWeight = addScooterViewModel.MaxWeight,
+                MotorPower = addScooterViewModel.MotorPower,
+                ScooterSize = addScooterViewModel.ScooterSize,
+                TiresSize = addScooterViewModel.TiresSize,
+                TravellingDistance = addScooterViewModel.TravellingDistance,
+                WaterproofLevel = addScooterViewModel.WaterproofLevel,
+                Condition = addScooterViewModel.Condition,
+                Kilometers = addScooterViewModel.Kilometers,
+                Description = addScooterViewModel.Description,
+                ContactNumber = addScooterViewModel.ContactNumber,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            using (var target = new MemoryStream())
+            {
+                addScooterViewModel.MainImageFile.CopyTo(target);
+                offer.OfferImage = target.ToArray();
+            }
+
+            var user = dbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
+            offer.User = user;
+            offer.UserId = userId;
+
+            dbContext.ElectricScooterOffers.Add(offer);
+            dbContext.SaveChanges();
+
+            var offerType = "ElectricScooterOffer";
+
+            if (addScooterViewModel.SecondImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addScooterViewModel.SecondImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addScooterViewModel.ThirdImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addScooterViewModel.ThirdImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addScooterViewModel.FourthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addScooterViewModel.FourthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addScooterViewModel.FifthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addScooterViewModel.FifthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            if (addScooterViewModel.SixthImageFile != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    addScooterViewModel.SixthImageFile.CopyTo(target);
+                    var offerImage = GetOfferImage(target, offer.Id, offerType);
+                    dbContext.OfferImages.Add(offerImage);
+                }
+            }
+
+            dbContext.SaveChanges();
+        }
+        protected OfferImage GetOfferImage(MemoryStream target, int offerId, string offerType)
+        {
+            var offerImage = new OfferImage()
+            {
+                Image = target.ToArray(),
+            };
+
+            if (offerType == "CarOffer")
+            {
+                offerImage.CarOfferId = offerId;
+            }
+            else if (offerType == "MotorcycleOffer")
+            {
+                offerImage.MotorcycleOfferId = offerId;
+            }
+            else if (offerType == "ElectricScooterOffer")
+            {
+                offerImage.ElectricScooterOfferId = offerId;
+            }
+
+            return offerImage;
         }
     }
 }
