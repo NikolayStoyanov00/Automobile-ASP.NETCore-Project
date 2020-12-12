@@ -1,12 +1,12 @@
-﻿@model AutomobileProject.ViewModels.Cars.VisualizeCarDetailsViewModel
+﻿@model AutomobileProject.ViewModels.ElectricScooters.VisualizeScooterDetailsViewModel
 
-<section class="banner banner-secondary" id="top" style="background-image: url(/img/banner-image-1-1920x300.jpg);">
+<section class="banner banner-secondary" id="top" style="background-image: url(/img/scooter-banner.png);">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="banner-caption">
                     <div class="line-dec"></div>
-                    <h2>Car Details</h2>
+                    <h2>Electric Scooter Details</h2>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                                 <div class="clearfix">
                                     <span class="pull-left">Type</span>
 
-                                    <strong class="pull-right">@Model.Type vehicle</strong>
+                                    <strong class="pull-right">@Model.Condition vehicle</strong>
                                 </div>
                             </li>
 
@@ -88,49 +88,58 @@
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Fuel</span>
+                                    <span class="pull-left">Battery</span>
 
-                                    <strong class="pull-right">@Model.FuelType</strong>
+                                    <strong class="pull-right">@Model.Battery</strong>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Engine size</span>
+                                    <span class="pull-left">Motor power</span>
 
-                                    <strong class="pull-right">@Model.EngineSize cc</strong>
+                                    <strong class="pull-right">@Model.MotorPower W</strong>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Power</span>
+                                    <span class="pull-left">Max speed achievable</span>
 
-                                    <strong class="pull-right">@Model.HorsePower hp</strong>
+                                    <strong class="pull-right">@Model.MaxSpeedAchievable km/h</strong>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Gearbox</span>
+                                    <span class="pull-left">Estimated range per charge</span>
 
-                                    <strong class="pull-right">@Model.Gearbox</strong>
+                                    <strong class="pull-right">@Model.TravellingDistance</strong>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Doors</span>
+                                    <span class="pull-left">Level of Waterproofing</span>
 
-                                    <strong class="pull-right">@Model.Doors</strong>
+                                    <strong class="pull-right">@Model.WaterproofLevel</strong>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Color</span>
+                                    <span class="pull-left">Scooter dimensions</span>
 
-                                    <strong class="pull-right">@Model.Color</strong>
+                                    <strong class="pull-right">@Model.ScooterSize</strong>
+                                </div>
+                            </li>
+
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Tire size</span>
+
+                                    <strong class="pull-right">@Model.TiresSize inch</strong>
                                 </div>
                             </li>
                         </ul>

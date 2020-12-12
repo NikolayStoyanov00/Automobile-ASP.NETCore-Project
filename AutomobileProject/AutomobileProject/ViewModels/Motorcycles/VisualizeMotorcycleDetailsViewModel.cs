@@ -1,4 +1,4 @@
-﻿using AutomobileProject.Views.User;
+﻿using AutomobileProject.ViewModels.User;
 using System.Collections.Generic;
 
 namespace AutomobileProject.ViewModels.Motorcycles

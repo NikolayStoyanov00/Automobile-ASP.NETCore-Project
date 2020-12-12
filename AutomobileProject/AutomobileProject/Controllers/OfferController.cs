@@ -66,7 +66,7 @@ namespace AutomobileProject.Controllers
             }
 
             this.offerService.AddMotorcycle(offer, userId);
-            return this.Redirect("/");
+            return this.Redirect("/Motorcycles/AllMotorcycles");
         }
 
 
@@ -88,7 +88,7 @@ namespace AutomobileProject.Controllers
             }
 
             this.offerService.AddElectricScooter(offer, userId);
-            return this.Redirect("/");
+            return this.Redirect("/ElectricScooters/AllElectricScooters");
         }
     }
 }

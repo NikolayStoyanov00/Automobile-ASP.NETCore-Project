@@ -1,16 +1,13 @@
-﻿using AutomobileProject.Views.User;
-using System;
+﻿using AutomobileProject.ViewModels.User;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AutomobileProject.ViewModels.Offer
+namespace AutomobileProject.ViewModels.Cars
 {
     public class VisualizeCarDetailsViewModel
     {
         public VisualizeCarDetailsViewModel()
         {
-            this.Images = new HashSet<string>();
+            Images = new HashSet<string>();
         }
         public string Type { get; set; }
 

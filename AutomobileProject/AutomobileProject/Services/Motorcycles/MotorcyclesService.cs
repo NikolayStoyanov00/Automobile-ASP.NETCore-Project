@@ -1,7 +1,7 @@
 ﻿using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.Offer;
 using AutomobileProject.ViewModels.Motorcycles;
-using AutomobileProject.Views.User;
+using AutomobileProject.ViewModels.User;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -1,8 +1,10 @@
 ﻿using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.User;
 using AutomobileProject.Services.ElectricScooters;
+using AutomobileProject.ViewModels.ElectricScooters;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AutomobileProject.Controllers
 {
@@ -31,57 +33,58 @@ namespace AutomobileProject.Controllers
             return this.View(carsToVisualize);
         }
 
-        //[HttpPost]
-        //public IActionResult AllElectricScooters(FiltersInputModel filtersInput)
-        //{
-        //    var carsToVisualize = this.electricScootersService.CarsForVisualization(filtersInput);
+        [HttpPost]
+        public IActionResult AllElectricScooters(FiltersInputModel filtersInput)
+        {
+            var scootersToVisualize = this.electricScootersService.ScootersForVisualization(filtersInput);
 
-        //    return this.View(carsToVisualize);
-        //}
+            return this.View(scootersToVisualize);
+        }
 
-        //public IActionResult CarDetails(int id)
-        //{
-        //    var carOffer = this.carsService.GetCarById(id);
-        //    return this.View(carOffer);
-        //}
+        public IActionResult ScooterDetails(int id)
+        {
+            var carOffer = this.electricScootersService.GetScooterById(id);
+            return this.View(carOffer);
+        }
 
-        //public IActionResult UserCars(string sortingType)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        public IActionResult UserElectricScooters(string sortingType)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        //    if (!string.IsNullOrEmpty(sortingType))
-        //    {
-        //        var sortedUserCarsToVisualize = this.carsService.GetOnlyUserCars(userId, sortingType);
-        //        return this.View(sortedUserCarsToVisualize);
-        //    }
+            if (!string.IsNullOrEmpty(sortingType))
+            {
+                var sortedUserScootersToVisualize = this.electricScootersService.GetOnlyUserScooters(userId, sortingType);
+                return this.View(sortedUserScootersToVisualize);
+            }
 
-        //    var userCarsToVisualize = this.carsService.GetOnlyUserCars(userId);
-        //    return this.View(userCarsToVisualize);
-        //}
+            var userScootersToVisualize = this.electricScootersService.GetOnlyUserScooters(userId);
+            return this.View(userScootersToVisualize);
+        }
 
-        //[HttpPost]
-        //public IActionResult UserCars(FiltersInputModel filtersInput)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var carsToVisualize = this.carsService.GetOnlyUserCars(userId, filtersInput);
+        [HttpPost]
+        public IActionResult UserElectricScooters(FiltersInputModel filtersInput)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var scootersToVisualize = this.electricScootersService.GetOnlyUserScooters(userId, filtersInput);
 
-        //    return this.View(carsToVisualize);
-        //}
+            return this.View(scootersToVisualize);
+        }
 
 
-        //public IActionResult DeleteCar(int id)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        public IActionResult DeleteScooter(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        //    //Get carOffer to check if the offer was created by the same user doing the delete request
-        //    var carOffer = this.carsService.GetCarOfferById(id);
-
-        //    if (carOffer.UserId == userId)
-        //    {
-        //        this.carsService.DeleteCarOffer(carOffer);
-        //    }
-
-        //    return this.RedirectToAction("UserCars");
-        //}
+            
+            //Get scooterOffer to check if the offer was created by the same user doing the delete request.
+            var scooterOffer = this.electricScootersService.GetScooterOfferById(id);
+        
+            if (scooterOffer.UserId == userId)
+            {
+                this.electricScootersService.DeleteScooterOffer(scooterOffer);
+            }
+        
+            return this.RedirectToAction("UserElectricScooters");
+        }
     }
 }

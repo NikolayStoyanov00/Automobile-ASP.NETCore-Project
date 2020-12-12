@@ -1,18 +1,12 @@
 ﻿using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.Offer;
-using AutomobileProject.Data.Models.User;
 using AutomobileProject.ViewModels.Cars;
 using AutomobileProject.ViewModels.Offer;
-using AutomobileProject.Views.User;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+using AutomobileProject.ViewModels.User;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AutomobileProject.Services.Offer
 {

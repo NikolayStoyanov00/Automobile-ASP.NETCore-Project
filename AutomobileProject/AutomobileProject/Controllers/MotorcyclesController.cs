@@ -1,5 +1,6 @@
 ﻿using AutomobileProject.Services.Motorcycles;
 using AutomobileProject.ViewModels.Motorcycles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -66,6 +67,7 @@ namespace AutomobileProject.Controllers
             return this.View(motorcycleOffer);
         }
 
+        [Authorize]
         public IActionResult DeleteMotorcycle(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

@@ -1,11 +1,7 @@
-﻿using AutomobileProject.Data.Models;
-using AutomobileProject.Data.Models.Offer;
+﻿using AutomobileProject.Data.Models.Offer;
 using AutomobileProject.ViewModels.Cars;
 using AutomobileProject.ViewModels.Offer;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AutomobileProject.Services.Offer
 {
@@ -23,7 +19,6 @@ namespace AutomobileProject.Services.Offer
         ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId, FiltersInputModel filters);
 
         CarOffer GetCarOfferById(int offerId);
-
         void DeleteCarOffer(CarOffer carOffer);
     }
 }
