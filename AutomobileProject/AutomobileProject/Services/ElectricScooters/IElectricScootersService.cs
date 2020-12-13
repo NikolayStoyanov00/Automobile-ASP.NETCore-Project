@@ -10,6 +10,8 @@ namespace AutomobileProject.Services.ElectricScooters
         ICollection<VisualizeScooterViewModel> ScootersForVisualization(string sortingType);
         ICollection<VisualizeScooterViewModel> ScootersForVisualization(FiltersInputModel filters);
 
+        void ChangeScooterDetails(VisualizeScooterDetailsViewModel model);
+
         ICollection<VisualizeScooterViewModel> GetOnlyUserScooters(string userId);
         ICollection<VisualizeScooterViewModel> GetOnlyUserScooters(string userId, string sortingType);
         ICollection<VisualizeScooterViewModel> GetOnlyUserScooters(string userId, FiltersInputModel filters);

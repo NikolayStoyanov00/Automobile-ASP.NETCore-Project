@@ -1,14 +1,23 @@
-﻿using AutomobileProject.ViewModels.User;
+﻿using AutomobileProject.Data.Models;
+using AutomobileProject.ViewModels.Offer;
+using AutomobileProject.ViewModels.User;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AutomobileProject.ViewModels.Motorcycles
 {
     public class VisualizeMotorcycleDetailsViewModel
     {
+        private readonly AutomobileDbContext dbContext;
+
         public VisualizeMotorcycleDetailsViewModel()
         {
             this.Images = new HashSet<string>();
+            dbContext = new AutomobileDbContext();
         }
+
+        public int Id { get; set; }
+
         public string Type { get; set; }
 
         public string Make { get; set; }
@@ -38,5 +47,14 @@ namespace AutomobileProject.ViewModels.Motorcycles
         public ICollection<string> Images { get; set; }
 
         public UserViewModel UserDetails { get; set; }
+
+        public ICollection<MakeModelDto> MakeModel => dbContext?.Motorcycles
+           .Select(x => new MakeModelDto
+           {
+               Make = x.Make,
+               Model = x.Model
+           })
+           .Distinct()
+           .ToList();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.Offer;
+using AutomobileProject.ViewModels.Cars.Enums;
 using AutomobileProject.ViewModels.Motorcycles;
 using AutomobileProject.ViewModels.User;
 using Microsoft.EntityFrameworkCore;
@@ -140,6 +141,7 @@ namespace AutomobileProject.Services.Motorcycles
 
             var motorcycle = new VisualizeMotorcycleDetailsViewModel()
             {
+                Id = motorcycleOffer.Id,
                 Type = motorcycleOffer.Condition.ToString(),
                 Make = motorcycleOffer.Make,
                 Model = motorcycleOffer.Model,
@@ -166,6 +168,7 @@ namespace AutomobileProject.Services.Motorcycles
 
             var userDetails = new UserViewModel()
             {
+                Id = user.Id,
                 FullName = user.FullName,
                 PhoneNumber = user.PhoneNumber,
                 EmailAddress = user.Email
@@ -174,6 +177,26 @@ namespace AutomobileProject.Services.Motorcycles
             motorcycle.UserDetails = userDetails;
 
             return motorcycle;
+        }
+
+        public void ChangeMotorcycleDetails(VisualizeMotorcycleDetailsViewModel model)
+        {
+            var motorcycleOffer = dbContext.MotorcycleOffers.FirstOrDefault(x => x.Id == model.Id);
+
+            motorcycleOffer.Condition = (Condition)Enum.Parse(typeof(Condition), model.Type);
+            motorcycleOffer.Make = model.Make;
+            motorcycleOffer.Model = model.Model;
+            motorcycleOffer.Kilometers = model.Kilometers;
+            motorcycleOffer.FuelType = (FuelType)Enum.Parse(typeof(FuelType), model.FuelType);
+            motorcycleOffer.HorsePower = model.HorsePower;
+            motorcycleOffer.CubicCentimeters = model.CubicCentimeters;
+            motorcycleOffer.Gearbox = (Gearbox)Enum.Parse(typeof(Gearbox), model.Gearbox);
+            motorcycleOffer.Price = model.Price;
+            motorcycleOffer.Color = model.Color;
+            motorcycleOffer.Year = model.Year;
+            motorcycleOffer.Description = model.Description;
+
+            dbContext.SaveChanges();
         }
 
         public ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId)

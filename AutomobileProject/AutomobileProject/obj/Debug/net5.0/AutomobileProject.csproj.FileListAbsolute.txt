@@ -195,3 +195,6 @@ D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Aut
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\AutomobileProject.csprojAssemblyReference.cache
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\ElectricScooters\PartialViews\_FiltersPartialView.cshtml.g.cs
 D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\ElectricScooters\UserElectricScooters.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\Cars\CarEditDetails.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\Motorcycles\MotorcycleEditDetails.cshtml.g.cs
+D:\C# - ASP.NET Project\AutomobileProject\AutomobileProject\obj\Debug\net5.0\Razor\Views\ElectricScooters\ScooterEditDetails.cshtml.g.cs

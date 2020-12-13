@@ -68,6 +68,29 @@ namespace AutomobileProject.Controllers
         }
 
         [Authorize]
+        public IActionResult MotorcycleEditDetails(int id)
+        {
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+
+            var motorcycleOffer = this.motorcyclesService.GetMotorcycleById(id);
+
+            if (motorcycleOffer.UserDetails.EmailAddress == userEmailAddress)
+            {
+                return this.View(motorcycleOffer);
+            }
+
+            return this.Redirect($"/Motorcycles/MotorcycleDetails?id={id}");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult MotorcycleEditDetails(int id, VisualizeMotorcycleDetailsViewModel motorcycleDetails)
+        {
+            this.motorcyclesService.ChangeMotorcycleDetails(motorcycleDetails);
+            return Redirect($"/Motorcycles/MotorcycleDetails?id={id}");
+        }
+
+        [Authorize]
         public IActionResult DeleteMotorcycle(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

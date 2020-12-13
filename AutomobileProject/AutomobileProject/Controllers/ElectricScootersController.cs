@@ -2,6 +2,7 @@
 using AutomobileProject.Data.Models.User;
 using AutomobileProject.Services.ElectricScooters;
 using AutomobileProject.ViewModels.ElectricScooters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -45,6 +46,29 @@ namespace AutomobileProject.Controllers
         {
             var carOffer = this.electricScootersService.GetScooterById(id);
             return this.View(carOffer);
+        }
+
+        [Authorize]
+        public IActionResult ScooterEditDetails(int id)
+        {
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+
+            var scooterOffer = this.electricScootersService.GetScooterById(id);
+
+            if (scooterOffer.UserDetails.EmailAddress == userEmailAddress)
+            {
+                return this.View(scooterOffer);
+            }
+
+            return this.Redirect($"/ElectricScooters/ScooterDetails?id={id}");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult ScooterEditDetails(int id, VisualizeScooterDetailsViewModel scooterDetails)
+        {
+            this.electricScootersService.ChangeScooterDetails(scooterDetails);
+            return Redirect($"/ElectricScooters/ScooterDetails?id={id}");
         }
 
         public IActionResult UserElectricScooters(string sortingType)

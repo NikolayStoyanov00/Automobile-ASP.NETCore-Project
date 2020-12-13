@@ -1,10 +1,5 @@
 ﻿@model AutomobileProject.ViewModels.ElectricScooters.VisualizeScooterDetailsViewModel
-@using Microsoft.AspNetCore.Identity
-@using AutomobileProject.Data.Models.User
-@inject UserManager<ApplicationUser> userManager
-@{
-    var userId = userManager.GetUserId(User);
-}
+@using AutomobileProject.ViewModels.Cars.Enums
 
 <section class="banner banner-secondary" id="top" style="background-image: url(/img/scooter-banner.png);">
     <div class="container">
@@ -12,7 +7,7 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="banner-caption">
                     <div class="line-dec"></div>
-                    <h2>Electric Scooter Details</h2>
+                    <h2>Edit Electric Scooter Details</h2>
                 </div>
             </div>
         </div>
@@ -46,106 +41,126 @@
                 <script src="~/js/ImageScripts/ChangeImageSizeScript.js"></script>
 
                 <div class="col-md-6 col-xs-12">
-                    <form action="#" method="post" class="form">
-                        <h2><strong class="text-primary">$@Model.Price.00</strong></h2>
-
-                        <br>
-
+                    <form action="/ElectricScooters/ScooterEditDetails?id=@Model.Id" method="post" class="form">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Type</span>
+                                    <span class="pull-left">Price (current price: <b>@Model.Price</b>)</span>
 
-                                    <strong class="pull-right">@Model.Condition vehicle</strong>
+                                    <input style="color:black" asp-for="Price" class="pull-right" />
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Condition (current condition: <b>@Model.Condition</b>)</span>
+
+                                    <select class="pull-right" asp-for="Condition" asp-items="@Html.GetEnumSelectList<Condition>()" style="color:black; font-family: Arial; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;">
+                                    </select>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Make</span>
+                                    <span class="pull-left">Make (current condition: <b>@Model.Make</b>)</span>
 
-                                    <strong class="pull-right">@Model.Make</strong>
+                                    <select class="pull-right" asp-for="Make" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove;  cursor: pointer;" name="Make" id="makes">
+                                        <option></option>
+                                        @foreach (var make in Model.MakeModel.OrderBy(x => x.Make).Select(x => x.Make).Distinct())
+                                        {
+                                            <option class="form-control" style="color: black" value="@make">@make</option>
+                                        }
+                                    </select>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left"> Model</span>
+                                    <span class="pull-left"> Model (current model: <b>@Model.Model</b>)</span>
 
-                                    <strong class="pull-right">@Model.Model</strong>
+                                    <select class="pull-right" style="font-family: Arial; color:black; position:relative; padding: 8px 16px;  border: 1px solid groove; cursor: pointer;" id="models">
+                                        @foreach (var scooter in Model.MakeModel.OrderBy(x => x.Model))
+                                        {
+                                            <option class="form-control" style="color: black" value="@scooter.Make">@scooter.Model</option>
+                                        }
+                                    </select>
+
+                                    <input asp-for="Model" type="hidden" id="Model" name="Model" value="">
+                                </div>
+                            </li>
+
+                            <!--Script to set the Models to match the chosen Make-->
+                            <script src="~/js/MakeModelScript/MakeModelFunctionalityScriptForEditDetails.js"></script>
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Year of Producing (current year: <b>@Model.Year</b>)</span>
+
+                                    <input style="color:black" asp-for="Year" class="pull-right" />
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Year of producing</span>
+                                    <span class="pull-left">Kilometers (current kilometers: <b>@Model.Kilometers km</b>)</span>
 
-                                    <strong class="pull-right">@Model.Year</strong>
+                                    <input style="color:black" asp-for="Kilometers" class="pull-right" />
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Kilometers</span>
+                                    <span class="pull-left">Battery (current battery: <b>@Model.Battery</b>)</span>
 
-                                    <strong class="pull-right">@Model.Kilometers km</strong>
+                                    <input style="color:black" asp-for="Battery" class="pull-right" />
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Battery</span>
+                                    <span class="pull-left">Motor Power (current motor power: <b>@Model.MotorPower</b>)</span>
 
-                                    <strong class="pull-right">@Model.Battery</strong>
+                                    <input style="color:black" asp-for="MotorPower" class="pull-right" />
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Motor power</span>
+                                    <span class="pull-left">Max speed (current max speed: <b>@Model.MaxSpeedAchievable</b>)</span>
 
-                                    <strong class="pull-right">@Model.MotorPower W</strong>
+                                    <input style="color:black" asp-for="MaxSpeedAchievable" class="pull-right" />
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Max speed achievable</span>
+                                    <span class="pull-left">Estimated range (current range: <b>@Model.TravellingDistance</b>)</span>
 
-                                    <strong class="pull-right">@Model.MaxSpeedAchievable km/h</strong>
+                                    <input style="color:black" asp-for="TravellingDistance" class="pull-right" />
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Estimated range per charge</span>
+                                    <span class="pull-left">Waterproofing (current waterproofing: <b>@Model.WaterproofLevel</b>)</span>
 
-                                    <strong class="pull-right">@Model.TravellingDistance</strong>
+                                    <input style="color:black" asp-for="WaterproofLevel" class="pull-right" />
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Level of Waterproofing</span>
+                                    <span class="pull-left">Scooter dimensions (current dimensions: <b>@Model.ScooterSize</b>)</span>
 
-                                    <strong class="pull-right">@Model.WaterproofLevel</strong>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="clearfix">
-                                    <span class="pull-left">Scooter dimensions</span>
-
-                                    <strong class="pull-right">@Model.ScooterSize</strong>
+                                    <input style="color:black" asp-for="ScooterSize" class="pull-right" />
                                 </div>
                             </li>
 
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Tire size</span>
+                                    <span class="pull-left">Tire size (current tire size: <b>@Model.TiresSize</b>)</span>
 
-                                    <strong class="pull-right">@Model.TiresSize inch</strong>
+                                    <input style="color:black" asp-for="TiresSize" class="pull-right" />
                                 </div>
                             </li>
                         </ul>
@@ -155,7 +170,7 @@
                                 <li>
                                     <a class="accordion-trigger">Vehicle Description</a>
                                     <div class="accordion-content">
-                                        <p>@Model.Description</p>
+                                        <textarea style="color:black" asp-for="Description" class="form-control"></textarea>
                                     </div>
                                 </li>
                                 <li>
@@ -196,12 +211,9 @@
                                 </li>
                             </ul> <!-- / accordion -->
                         </div>
-                        @if (userId == Model.UserDetails.Id)
-                        {
-                            <div class="form-group">
-                                <a href="/ElectricScooters/ScooterEditDetails?id=@Model.Id" style="width:120px; float:right; position:relative; bottom:-15px" class="btn btn-primary">Edit</a>
-                            </div>
-                        }
+                        <div class="form-group">
+                            <button style="width:120px; float:right; position:relative; bottom:-15px" id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>

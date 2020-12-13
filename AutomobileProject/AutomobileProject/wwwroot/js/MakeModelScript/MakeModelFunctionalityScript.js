@@ -1,4 +1,6 @@
-﻿fetch('/Offer/AddCar')
+﻿var path = window.location.pathname;
+
+fetch(path)
     .then(response => {
         var $make = $('#makes'),
             $model = $('#models'),
@@ -10,7 +12,7 @@
         }).trigger('change');
     });
 
-fetch('/Offer/AddCar')
+fetch(path)
     .then(response => {
         var $singlebutton = $('#singlebutton');
         var $selectedModel = document.getElementById('models');

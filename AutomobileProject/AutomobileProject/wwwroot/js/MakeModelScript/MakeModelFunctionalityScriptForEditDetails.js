@@ -1,27 +1,23 @@
-﻿var path = window.location.pathname;
+﻿var pathName = window.location.pathname;
+var search = window.location.search;
 
-fetch(path)
+fetch(pathName + search)
     .then(response => {
         var $make = $('#makes'),
             $model = $('#models'),
-            $options = $model.find('option'),
-            $select = document.getElementById("models"),
-            $all = document.getElementById("all");
+            $options = $model.find('option');
 
         $make.on('change', function () {
             $model.html($options.filter('[value="' + this.value + '"]'));
-            $select.add($all, $select[0]);
-            $all.attr('selected', 'selected');
-            $model.trigger('change');
         }).trigger('change');
     });
 
-fetch(path)
+fetch(pathName + search)
     .then(response => {
-        var $submitButton = $('#submitButton');
+        var $singlebutton = $('#singlebutton');
         var $selectedModel = document.getElementById('models');
 
-        $submitButton.on('click', function () {
+        $singlebutton.on('click', function () {
             document.getElementById("Model").value = $selectedModel.options[$selectedModel.selectedIndex].text;
         });
     });

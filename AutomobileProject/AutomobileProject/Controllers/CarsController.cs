@@ -9,6 +9,7 @@ using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.User;
 using AutomobileProject.Services.Offer;
 using AutomobileProject.ViewModels.Cars;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -54,6 +55,29 @@ namespace AutomobileProject.Controllers
         {
             var carOffer = this.carsService.GetCarById(id);
             return this.View(carOffer);
+        }
+
+        [Authorize]
+        public IActionResult CarEditDetails(int id)
+        {
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+
+            var carOffer = this.carsService.GetCarById(id);
+
+            if (carOffer.UserDetails.EmailAddress == userEmailAddress)
+            {
+                return this.View(carOffer);
+            }
+
+            return this.Redirect($"/Cars/CarDetails?id={id}");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult CarEditDetails(int id, VisualizeCarDetailsViewModel carDetails)
+        {
+            this.carsService.ChangeCarDetails(carDetails);
+            return Redirect($"/Cars/CarDetails?id={id}");
         }
 
         public IActionResult UserCars(string sortingType)

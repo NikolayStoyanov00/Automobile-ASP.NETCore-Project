@@ -1,6 +1,7 @@
 ﻿using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.Offer;
 using AutomobileProject.ViewModels.Cars;
+using AutomobileProject.ViewModels.Cars.Enums;
 using AutomobileProject.ViewModels.Offer;
 using AutomobileProject.ViewModels.User;
 using Microsoft.EntityFrameworkCore;
@@ -176,6 +177,7 @@ namespace AutomobileProject.Services.Offer
 
             var car = new VisualizeCarDetailsViewModel()
             {
+                Id = carOffer.Id,
                 Type = carOffer.Condition.ToString(),
                 Make = carOffer.Make,
                 Model = carOffer.Model,
@@ -203,6 +205,7 @@ namespace AutomobileProject.Services.Offer
 
             var userDetails = new UserViewModel()
             {
+                Id = carOffer.UserId,
                 FullName = user.FullName,
                 PhoneNumber = user.PhoneNumber,
                 EmailAddress = user.Email
@@ -211,6 +214,27 @@ namespace AutomobileProject.Services.Offer
             car.UserDetails = userDetails;
 
             return car;
+        }
+
+        public void ChangeCarDetails(VisualizeCarDetailsViewModel model)
+        {
+            var carOffer = dbContext.CarOffers.FirstOrDefault(x => x.Id == model.Id);
+
+            carOffer.Condition = (Condition)Enum.Parse(typeof(Condition), model.Type);
+            carOffer.Make = model.Make;
+            carOffer.Model = model.Model;
+            carOffer.Kilometers = model.Kilometers;
+            carOffer.FuelType = (FuelType)Enum.Parse(typeof(FuelType), model.FuelType);
+            carOffer.HorsePower = model.HorsePower;
+            carOffer.EngineSize = model.EngineSize;
+            carOffer.Gearbox = (Gearbox)Enum.Parse(typeof(Gearbox), model.Gearbox);
+            carOffer.Price = model.Price;
+            carOffer.Doors = model.Doors;
+            carOffer.Color = model.Color;
+            carOffer.Year = model.Year;
+            carOffer.Description = model.Description;
+
+            dbContext.SaveChanges();
         }
 
         public ICollection<VisualizeCarViewModel> GetOnlyUserCars(string userId)
@@ -472,7 +496,7 @@ namespace AutomobileProject.Services.Offer
             if (priceRangeFilter == false)
             {
                 filters += $"and (Price >= {filtersInput.MinPrice} and Price <= {filtersInput.MaxPrice}) ";
-            } 
+            }
 
             filters += $"and (Kilometers >= {filtersInput.MinKilometers} and Kilometers <= {filtersInput.MaxKilometers}) ";
             filters += $"and (HorsePower >= {filtersInput.MinHorsePower} and HorsePower <= {filtersInput.MaxHorsePower}) ";

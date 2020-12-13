@@ -13,6 +13,8 @@ namespace AutomobileProject.Services.Motorcycles
         VisualizeMotorcycleDetailsViewModel GetMotorcycleById(int id);
         MotorcycleOffer GetMotorcycleOfferById(int offerId);
 
+        public void ChangeMotorcycleDetails(VisualizeMotorcycleDetailsViewModel model);
+
         ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId);
         ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId, string sortingType);
         ICollection<VisualizeMotorcycleViewModel> GetOnlyUserMotorcycles(string userId, FiltersInputModel filters);

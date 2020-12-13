@@ -1,5 +1,6 @@
 ﻿using AutomobileProject.Data.Models;
 using AutomobileProject.Data.Models.Offer;
+using AutomobileProject.ViewModels.Cars.Enums;
 using AutomobileProject.ViewModels.ElectricScooters;
 using AutomobileProject.ViewModels.User;
 using Microsoft.EntityFrameworkCore;
@@ -253,6 +254,7 @@ namespace AutomobileProject.Services.ElectricScooters
 
             var scooter = new VisualizeScooterDetailsViewModel()
             {
+                Id = scooterOffer.Id,
                 Condition = scooterOffer.Condition.ToString(),
                 Make = scooterOffer.Make,
                 Model = scooterOffer.Model,
@@ -282,6 +284,7 @@ namespace AutomobileProject.Services.ElectricScooters
 
             var userDetails = new UserViewModel()
             {
+                Id = user.Id,
                 FullName = user.FullName,
                 PhoneNumber = user.PhoneNumber,
                 EmailAddress = user.Email
@@ -290,6 +293,28 @@ namespace AutomobileProject.Services.ElectricScooters
             scooter.UserDetails = userDetails;
 
             return scooter;
+        }
+
+        public void ChangeScooterDetails(VisualizeScooterDetailsViewModel model)
+        {
+            var scooterOffer = dbContext.ElectricScooterOffers.FirstOrDefault(x => x.Id == model.Id);
+
+            scooterOffer.Condition = (Condition)Enum.Parse(typeof(Condition), model.Condition);
+            scooterOffer.Make = model.Make;
+            scooterOffer.Model = model.Model;
+            scooterOffer.Kilometers = model.Kilometers;
+            scooterOffer.MotorPower = model.MotorPower;
+            scooterOffer.TravellingDistance = model.TravellingDistance;
+            scooterOffer.MaxSpeedAchievable = model.MaxSpeedAchievable;
+            scooterOffer.TiresSize = model.TiresSize;
+            scooterOffer.WaterproofLevel = model.WaterproofLevel;
+            scooterOffer.MaxWeight = model.MaxWeight;
+            scooterOffer.Price = model.Price;
+            scooterOffer.ScooterSize = model.ScooterSize;
+            scooterOffer.Year = model.Year;
+            scooterOffer.Description = model.Description;
+
+            dbContext.SaveChanges();
         }
         public ElectricScooterOffer GetScooterOfferById(int offerId)
         {
