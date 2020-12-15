@@ -45,8 +45,11 @@ namespace AutomobileProject.Services.Offer
 
             using (var target = new MemoryStream())
             {
-                addCarViewModel.MainImageFile.CopyTo(target);
-                offer.OfferImage = target.ToArray();
+                if (addCarViewModel.MainImageFile != null)
+                {
+                    addCarViewModel.MainImageFile.CopyTo(target);
+                    offer.OfferImage = target.ToArray();
+                }
             }
 
             var user = dbContext.AspNetUsers.FirstOrDefault(x => x.Id == userId);
@@ -107,7 +110,7 @@ namespace AutomobileProject.Services.Offer
                     dbContext.OfferImages.Add(offerImage);
                 }
             }
-           
+
             dbContext.SaveChanges();
         }
 

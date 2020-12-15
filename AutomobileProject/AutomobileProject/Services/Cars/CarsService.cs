@@ -24,7 +24,6 @@ namespace AutomobileProject.Services.Offer
         {
             var carOffersToVisualize = new List<VisualizeCarViewModel>();
 
-
             foreach (var carOffer in dbContext.CarOffers.ToArray())
             {
                 var car = new VisualizeCarViewModel()
