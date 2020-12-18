@@ -38,7 +38,6 @@ namespace AutomobileProject.Controllers
         public IActionResult AllElectricScooters(FiltersInputModel filtersInput)
         {
             var scootersToVisualize = this.electricScootersService.ScootersForVisualization(filtersInput);
-
             return this.View(scootersToVisualize);
         }
 
@@ -89,8 +88,8 @@ namespace AutomobileProject.Controllers
         public IActionResult UserElectricScooters(FiltersInputModel filtersInput)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var scootersToVisualize = this.electricScootersService.GetOnlyUserScooters(userId, filtersInput);
 
+            var scootersToVisualize = this.electricScootersService.GetOnlyUserScooters(userId, filtersInput);
             return this.View(scootersToVisualize);
         }
 
@@ -98,7 +97,6 @@ namespace AutomobileProject.Controllers
         public IActionResult DeleteScooter(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             
             //Get scooterOffer to check if the offer was created by the same user doing the delete request.
             var scooterOffer = this.electricScootersService.GetScooterOfferById(id);

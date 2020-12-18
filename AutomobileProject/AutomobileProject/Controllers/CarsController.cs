@@ -47,7 +47,6 @@ namespace AutomobileProject.Controllers
         public IActionResult AllCars(FiltersInputModel filtersInput)
         {
             var carsToVisualize = this.carsService.CarsForVisualization(filtersInput);
-
             return this.View(carsToVisualize);
         }
 

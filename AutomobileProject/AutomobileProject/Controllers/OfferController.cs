@@ -36,7 +36,6 @@ namespace AutomobileProject.Controllers
         [HttpPost]
         public IActionResult AddCar(AddCarViewModel input)
         {
-            //TODO: Add image file validation
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (!ModelState.IsValid)

@@ -24,7 +24,6 @@ namespace AutomobileProject.Controllers
             }
 
             var motorcyclesToVisualize = this.motorcyclesService.MotorcyclesForVisualization();
-
             return this.View(motorcyclesToVisualize);
         }
 
@@ -32,7 +31,6 @@ namespace AutomobileProject.Controllers
         public IActionResult AllMotorcycles(FiltersInputModel filtersInput)
         {
             var motorcyclesToVisualize = this.motorcyclesService.MotorcyclesForVisualization(filtersInput);
-
             return this.View(motorcyclesToVisualize);
         }
 
@@ -47,7 +45,6 @@ namespace AutomobileProject.Controllers
             }
 
             var userCarsToVisualize = this.motorcyclesService.GetOnlyUserMotorcycles(userId);
-
             return this.View(userCarsToVisualize);
         }
 
@@ -55,15 +52,14 @@ namespace AutomobileProject.Controllers
         public IActionResult UserMotorcycles(FiltersInputModel filtersInput)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var motorcyclesToVisualize = this.motorcyclesService.GetOnlyUserMotorcycles(userId, filtersInput);
 
+            var motorcyclesToVisualize = this.motorcyclesService.GetOnlyUserMotorcycles(userId, filtersInput);
             return this.View(motorcyclesToVisualize);
         }
 
         public IActionResult MotorcycleDetails(int id)
         {
             var motorcycleOffer = this.motorcyclesService.GetMotorcycleById(id);
-
             return this.View(motorcycleOffer);
         }
 
