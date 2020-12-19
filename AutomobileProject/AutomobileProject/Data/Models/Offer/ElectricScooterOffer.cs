@@ -39,8 +39,6 @@ namespace AutomobileProject.Data.Models.Offer
         [Required]
         public int TravellingDistance { get; set; }
 
-
-        [Required]
         public string Battery { get; set; }
 
         [Required]
@@ -54,7 +52,6 @@ namespace AutomobileProject.Data.Models.Offer
         [Required]
         public int Kilometers { get; set; }
 
-        [Required]
         public string ScooterSize { get; set; }
 
         [Required]
